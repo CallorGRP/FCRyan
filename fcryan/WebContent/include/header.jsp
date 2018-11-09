@@ -228,7 +228,6 @@
 	}
 	#header_line3_in {
 		width: 1400px;
-		margin: 0 auto;
 		box-sizing: border-box;
 	}
 	.header_line3_dropdown {
@@ -255,7 +254,7 @@
 	}
 	#leftmenu {
 		float: left;
-		displya: none;
+		display: none;
 		transition: 0.6s;
 	}
 	#leftmenu > span {
