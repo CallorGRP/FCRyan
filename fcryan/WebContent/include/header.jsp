@@ -193,6 +193,7 @@
 		position: relative;
 		margin-top: 140px;
 		transition: 0.6s;
+		padding: 0px 35px;
 	}
 	#header_line3_ul > li {
 		float: left;
@@ -254,7 +255,6 @@
 	}
 	#leftmenu {
 		float: left;
-		display: none;
 		transition: 0.6s;
 	}
 	#leftmenu > span {
@@ -421,7 +421,6 @@
 				$("#hide_menu").css("top", "0px");
 				$("#header_line3").css("margin-top", "140px").css("border-top", "0px").css("height", "49px");
 				$("#leftmenu").css("opacity", "0");
-				$("")
 				
 			}
 		}

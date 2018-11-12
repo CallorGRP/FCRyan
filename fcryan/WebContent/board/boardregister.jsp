@@ -189,11 +189,29 @@
 		display: none;
 		margin-top: 8px;
 	}
+	#file_wrap > *{
+		float: left;
+		margin-right: 8px;
+	}
+	.files {
+		display: inline-block;
+		height: 29px;
+		line-height: 31px!important;
+		cursor: pointer;
+		font-size: 15px;
+	}
+	#close_btn {
+		line-height: 29px;
+		cursor: pointer;
+		font-size: 15px;
+	}
+	#close_btn:hover {
+		font-size: 25px;
+	}
 </style>
 <script type="text/javascript" src="<%=path%>/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(document).on("click", ".btn-primary", function(elClickedObj){
-		alert("test");
 		var title = $("#title").val();
 		// 스마트에디터로 content부분 값 넘겨받는 부분
 		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
@@ -221,7 +239,14 @@
 	});
 	$(document).on("change", "#uploadfile", function(){
 		var filename = this.files[0].name;
-		$("#file-name").val(filename);
+		$("#file-name").text(filename);
+		$("#close_btn").css("display", "block");
+	});
+	$(document).on("click", "#close_btn", function(){
+		$("#uploadfile").replaceWith($("#uploadfile").clone(true));
+		$("#uploadfile").val("");
+		$("#file-name").text("선택된 파일 없음");
+		$("#close_btn").css("display", "none");
 	});
 </script>
 </head>
@@ -233,7 +258,6 @@
 			</div>
 			<!-- form속성에 action을 지정하지 않으면 현재 경로를 그대로 action의 대상 경로로 설정 -->
 			<form role="form" id="frm_bin" name="frm_bin" action="boardInsertPlay.bizpoll" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="bno" id="bno" value="${boardview.bno}">
 
 			<div class="box-body">
 				<div class="form-group">
@@ -249,10 +273,11 @@
 				<div class="forn-group">
 					<label for="writer">작성자</label> <input type="text" id="writer" name="writer" class="form-control" value="${sessionScope.loginUser.id}" readonly="readonly">
 				</div>
-				<div>
+				<div id="file_wrap">
 					<input type="file" name="uploadfile" id="uploadfile" style="display: none;">
 					<input type="button" class="btn btn-file" value="파일 선택"> 
-					<input type="text" id="file-name" readonly="readonly" style="height: 29px; border: none;">
+					<span class="files" id="file-name" style="height: 29px; border: none;" >선택된 파일 없음</span> 
+					<i class="fa fa-close" id="close_btn" style="display: none"></i>
 				</div>
 			</div>
 			<div>

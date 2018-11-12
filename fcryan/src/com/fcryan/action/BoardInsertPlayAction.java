@@ -38,6 +38,7 @@ public class BoardInsertPlayAction implements Action{
 				                                      Constants.MAX_UPLOAD,  // 업로도 최대 용량
 				                                      "UTF-8",               // 인코딩
 				                                      new DefaultFileRenamePolicy()); // 파일이름중복정책
+
 		
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
@@ -67,16 +68,9 @@ public class BoardInsertPlayAction implements Action{
 			filename = "-";
 		}
 		
-		
 		BoardDAO bDao = BoardDAO.getInstance();
 		BoardDTO bDto = new BoardDTO(title, content, writer, filename, filesize);
 		int result = bDao.boardInsert(bDto);
-		
-//		if(result > 0) { // 등록성공
-//			System.out.println("게시글 등록 성공");
-//		} else { // 등록실패
-//			System.out.println("게시글 등록 실패");
-//		}
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath(url);
