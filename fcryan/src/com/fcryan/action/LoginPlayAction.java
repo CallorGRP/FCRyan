@@ -37,8 +37,8 @@ public class LoginPlayAction implements Action{
 		} else { // 로그인 실패
 			message = "-1";
 		}
-		String referer = request.getHeader("referer");
-		System.out.println("이전 URL: " + referer);
+//		String referer = request.getHeader("referer");
+//		System.out.println("이전 URL: " + referer);
 		
 		JSONObject jObj = new JSONObject();
 		jObj.put("message", message);

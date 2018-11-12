@@ -16,6 +16,7 @@ import com.fcryan.action.BoardDownloadAction;
 import com.fcryan.action.BoardInsertAction;
 import com.fcryan.action.BoardInsertPlayAction;
 import com.fcryan.action.BoardListAction;
+import com.fcryan.action.BoardUpdateAction;
 import com.fcryan.action.BoardViewcntAction;
 import com.fcryan.action.ConstractAction;
 import com.fcryan.action.IdCheckAction;
@@ -142,6 +143,9 @@ public class BizpollFrontController extends HttpServlet {
 			forward = action.excute(request, response);
 		} else if(command.equals("/download.bizpoll")) {
 			action = new BoardDownloadAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/boardUpdate.bizpoll")) {
+			action = new BoardUpdateAction();
 			forward = action.excute(request, response);
 		} 
 		

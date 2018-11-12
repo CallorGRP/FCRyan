@@ -227,7 +227,7 @@
 		text-align: center;
 	}
 	#header_line3_in {
-		width: 1400px;
+		width: 100%;
 		box-sizing: border-box;
 	}
 	.header_line3_dropdown {

@@ -141,15 +141,20 @@
 		color: red;
 	}
 	.btn {
-		   padding: 7px 15px;
+		padding: 7px 15px;
 	    font-size: 14px;
 	    border-radius: 25px;
 	    background-color: #F39C12;
 	    color: white;
 	    outline: none;
 	    border: 0px;
-	    float: right;
 	    cursor: pointer;
+	}
+	.btn-file {
+		background-color: #3498DB; 
+	}
+	.btn-file:hover {
+		background-color: #0054FF!important; 
 	}
 	.btn:hover {
 		box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
@@ -188,6 +193,7 @@
 <script type="text/javascript" src="<%=path%>/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(document).on("click", ".btn-primary", function(elClickedObj){
+		alert("test");
 		var title = $("#title").val();
 		// 스마트에디터로 content부분 값 넘겨받는 부분
 		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
@@ -208,6 +214,14 @@
 		} else {
 			$(".error").css("display", "none");
 		}
+	});
+	
+	$(document).on("click", ".btn-file", function(){
+		$("#uploadfile").click();
+	});
+	$(document).on("change", "#uploadfile", function(){
+		var filename = this.files[0].name;
+		$("#file-name").val(filename);
 	});
 </script>
 </head>
@@ -235,7 +249,11 @@
 				<div class="forn-group">
 					<label for="writer">작성자</label> <input type="text" id="writer" name="writer" class="form-control" value="${sessionScope.loginUser.id}" readonly="readonly">
 				</div>
-				<div><input type="file" name="uploadfile" id="uploadfile"></div>
+				<div>
+					<input type="file" name="uploadfile" id="uploadfile" style="display: none;">
+					<input type="button" class="btn btn-file" value="파일 선택"> 
+					<input type="text" id="file-name" readonly="readonly" style="height: 29px; border: none;">
+				</div>
 			</div>
 			<div>
 				<button class="btn btn-primary">게시글 등록</button>

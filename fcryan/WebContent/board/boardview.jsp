@@ -288,6 +288,10 @@
 	$(document).on("click", "#returnGo", function(){
 		location.href = "<%=referer%>";
 	});
+	
+	$(document).on("click", "#boardUpdate", function(){
+		location.href="boardUpdate.bizpoll?bno=${boardview.bno}";
+	});
 </script>
 </head>
 <body>
@@ -343,7 +347,7 @@
 				<button id="answer_btn" class="reply_btn">답변</button>
 				
 				<c:if test="${sessionScope.loginUser.id == boardview.writer}">
-					<button type="submit" class="reply_btn btn-warning btn-primary">수정</button>
+					<button type="submit" class="reply_btn btn-warning btn-primary" id="boardUpdate">수정</button>
 					<button type="submit" class="reply_btn btn-danger btn-primary">삭제</button>
 				</c:if>
 			</div>
