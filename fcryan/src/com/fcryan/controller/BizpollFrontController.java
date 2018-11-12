@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fcryan.action.Action;
 import com.fcryan.action.ActionForward;
 import com.fcryan.action.BoardDetailAction;
+import com.fcryan.action.BoardDownloadAction;
 import com.fcryan.action.BoardInsertAction;
 import com.fcryan.action.BoardInsertPlayAction;
 import com.fcryan.action.BoardListAction;
@@ -138,6 +139,9 @@ public class BizpollFrontController extends HttpServlet {
 			forward = action.excute(request, response);
 		} else if(command.equals("/boardInsertPlay.bizpoll")) {
 			action = new BoardInsertPlayAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/download.bizpoll")) {
+			action = new BoardDownloadAction();
 			forward = action.excute(request, response);
 		} 
 		
