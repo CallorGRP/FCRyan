@@ -80,8 +80,8 @@
      	height: 72px!important;
      }
      .addr {
-     	width: 197px;
-     	height: 28px;
+     	width: 201px;
+     	height: 34px;
      	margin-bottom: 10px;
      }
      #fcryan_addr {

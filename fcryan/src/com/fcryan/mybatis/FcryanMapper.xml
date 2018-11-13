@@ -161,13 +161,16 @@
 	</insert>
 	
 	<update id="boardUpdate" parameterType="com.fcryan.dto.BoardDTO">
-		UPDATE fcryanboard SET
-			title = #{title},
-			writer = #{writer}, 
-			content = #{content},
-			filename = #{filename}, 
-			filesize = #{filesize}
-			WHERE bno = #{bno}
+					UPDATE fcryanboard SET
+						title = #{title},
+						writer = #{writer}, 
+					<if test="filename != 'no'">
+						filename = #{filename}, 
+						filesize = #{filesize},
+					</if>
+						content = #{content}
+						WHERE bno = #{bno}				
+
 	</update>
 	
 </mapper>

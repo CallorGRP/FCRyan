@@ -133,7 +133,7 @@ public class BoardDAO {
 		return result;
 	}
 	
-	public int boardUpdate(BoardDTO bDto) {
+	public  void boardUpdate(BoardDTO bDto) {
 		sqlSession = sqlSessionFactory.openSession();
 		int result = 0;
 		try {
@@ -144,7 +144,6 @@ public class BoardDAO {
 		} finally {
 			sqlSession.close();
 		}
-		return result;
 	}
 	
 	

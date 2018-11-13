@@ -23,7 +23,7 @@
 	}
 	#header {
 		width: 100%;
-		border-top: 10px solid #263959;
+		border-top: 10px solid #2C3E50;
 	}
 	.divsize {
 		width: 768px;
@@ -89,7 +89,7 @@
      }
      #addr_btn {
      	border: 0px;
-     	background-color: #263959;
+     	background-color: #2C3E50;
      	color: white;
      	width: 201px;
      	height: 34px;
@@ -112,8 +112,8 @@
 	}
 	.btn_agree {
 		color: #fff;
-		border: 1px solid #263959;
-		background-color: #263959;
+		border: 1px solid #2C3E50;
+		background-color: #2C3E50;
 		margin-left: 5px;
 	}
 	.btn_default {
@@ -168,7 +168,7 @@
 		left: -90px;
 	}
 	#fcryan_msg {
-		border: 2px solid #263959;
+		border: 2px solid #2C3E50;
 		border-radius: 25px;
 		margin: 0px auto 30px;
 		width: 760px;
@@ -199,6 +199,7 @@
      #close_btn {
 		float: right;
 		cursor: pointer;
+		margin-top: 8px;
      }
 	 #content_layout{
          width: 460px;
@@ -211,12 +212,13 @@
          left: 50%;
          margin-left: -230px;     
          margin-top: -160px;
+         border: 2px solid #2C3E50;
      }
      #modal_header {
      	height: 35px;
-     	background-color: #263959;
+     	background-color: #2C3E50;
      	color: white;
-     	border-radius: 25px 25px 0 0;
+     	border-radius: 20px 20px 0 0;
      	padding: 0 20px;
      	line-height: 35px;
      }
@@ -231,17 +233,18 @@
      .btn_login > a {
      	width: 90px;
      	height: 35px;
-     	border: 2px solid #263959;
+     	border: 2px solid #2C3E50;
      	font-size: 20px;
      	border-radius: 25px;
      	display: inline-block;
      	text-align: center;
      	font-weight: bold;
-     	color: #263959;
+     	color: #2C3E50;
      	margin: 0px 20px 20px;
+     	line-height: 33px;
      }
      .btn_login > a:hover {
-		background-color: #263959;
+		background-color: #2C3E50;
 		color: white;
 	 }
 </style>
@@ -249,7 +252,7 @@
 	$(document).ready(function(){
 		
         $(".input_msg").focus(function() {
-            $(this).parent().css("border", "1px solid #263959");         
+            $(this).parent().css("border", "1px solid #2C3E50");         
         });
         $(".input_msg").blur(function() {
         	$(this).parent().css("border", "1px solid #dadada");         
@@ -356,7 +359,7 @@
 	        	<a id="yes_btn" href="#">네</a>
 	        </div>
 	     </div>
-     </div>
+	</div>
 </body>
 
 </html>

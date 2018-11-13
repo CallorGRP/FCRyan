@@ -228,6 +228,8 @@
 			$(".error").css("display", "block");
 			return false;
 		}
+		var nowfile = $("#file-name").text();
+		$("#now-file-name").val(nowfile);
 		$("#frm_bin").submit();
 	});
 	
@@ -252,6 +254,8 @@
 			$("#close_btn").css("display", "none");
 		} else {
 			var filename = this.files[0].name;
+			var filesize = this.files[0].size;
+			$("#now-file-size").val(filesize);
 			$("#file-name").text(filename);
 			$("#close_btn").css("display", "block");
 		}
@@ -294,7 +298,8 @@
 					<input type="button" class="btn btn-file" value="파일 선택"> 
 					<span class="files" id="file-name" style="height: 29px; border: none;">${boardview.filename}</span> 
 					<i class="fa fa-close" id="close_btn"></i>
-					<input type="hidden" id="post-file-name" name="post-file-name" value="${boardview.filename}">
+					<input type="hidden" id="now-file-name" name="now-file-name">
+					<input type="hidden" id="now-file-size" name="now-file-size">
 				</div>
 			</div>
 			<div>

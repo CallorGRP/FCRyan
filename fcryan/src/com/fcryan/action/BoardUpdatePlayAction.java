@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.collections.SynchronizedStack;
+
 import com.fcryan.common.Constants;
 import com.fcryan.dao.BoardDAO;
 import com.fcryan.dto.BoardDTO;
@@ -34,18 +36,35 @@ public class BoardUpdatePlayAction implements Action{
 				                                      "UTF-8",               // 인코딩
 				                                      new DefaultFileRenamePolicy()); // 파일이름중복정책
 
-		int bno = Integer.parseInt(multi.getParameter("bno"));
+		String sBno = multi.getParameter("bno");
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
 		String writer = multi.getParameter("writer");
 		String filename = " "; // (공백)
 		int filesize = 0;
-		String postfile = multi.getParameter("post-file-name");
-//		System.out.println(bno + ", " + title + ", " + content + ", " + writer + ", " + postfile);
+		String nowFileName = multi.getParameter("now-file-name");
+		String nowFileSize = multi.getParameter("now-file-size");
 		
-		// 파일먼저 삭제하고
-		File file = new File(Constants.UPLOAD_PATH + postfile);
-		file.delete();
+		
+		// 과거 filename과 filesize 불러오기		
+		BoardDAO bDao = BoardDAO.getInstance();
+		BoardDTO bDto = bDao.boardDetailView(sBno);
+		String pfilename = bDto.getFilename();
+		String pfilesize = String.valueOf(bDto.getFilesize());
+		System.out.println("과거 첨부파일: " + pfilename + ", " + pfilesize);
+		System.out.println("현재 첨부파일: " + nowFileName + ", " + nowFileSize);
+		
+		int flag = 0;
+		if(nowFileName.equals(pfilename) && (nowFileSize.equals(pfilesize) || nowFileSize.equals(""))) {
+			// 파일이름이 같으면서, 
+			// 사이즈가 같거나,
+			// 또는 사이즈가 0이면
+			// 파일 지우지 않음, filename과 filesize도 수정 하면 안됨
+			flag = 1;
+		} else {
+			File file = new File(Constants.UPLOAD_PATH + pfilename);
+			file.delete();
+		}	
 		
 		try {
 			Enumeration files = multi.getFileNames();
@@ -53,6 +72,7 @@ public class BoardUpdatePlayAction implements Action{
 			while(files.hasMoreElements()) {
 				String file1 = (String)files.nextElement();
 				filename = multi.getFilesystemName(file1); // 첨부파일의 파일이름
+				System.out.println("파일이름 왜 안바뀜: " + filename);
 				File f1 = multi.getFile(file1);            // 첨부파일의 파일
 				
 				if(f1 != null) {
@@ -62,16 +82,16 @@ public class BoardUpdatePlayAction implements Action{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		if(filename == null || filename.trim().equals("")) {
 			filename = "-";
 		}
-//		System.out.println("현재 filename: "  + filename);
+		if(flag == 1) {
+			filename = "no";
+		}
 		
-		
-		BoardDAO bDao = BoardDAO.getInstance();
-		BoardDTO bDto = new BoardDTO(bno, title, content, writer, filename, filesize);
-		int result = bDao.boardUpdate(bDto);  
+		int bno = Integer.parseInt(sBno);
+		bDto = new BoardDTO(bno, title, content, writer, filename, filesize);
+		bDao.boardUpdate(bDto);  
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath(url);

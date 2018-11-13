@@ -230,12 +230,74 @@
 	#frm_reply {
 		margin: 0px;
 	}
+	#modal_all {
+     	z-index: 200;
+     	position: fixed;
+     	top: 0;
+     	left: 0;
+     	width: 100%;
+     	height: 100%;
+     	overflow: auto;
+     	background-color: rgba(0, 0, 0, 0.4);
+     	padding-top: 100px;
+     	display: none;
+     }
+     #close_btn {
+		float: right;
+		cursor: pointer;
+		margin-top: 8px;
+     }
+	 #content_layout{
+         width: 460px;
+         height: 160px;
+         box-sizing: border-box;
+         background-color: white;
+         border-radius: 25px;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         margin-left: -230px;     
+         margin-top: -160px;
+         border: 2px solid #2C3E50;
+     }
+     #modal_header {
+     	height: 35px;
+     	background-color: #2C3E50;
+     	color: white;
+     	border-radius: 20px 20px 0 0;
+     	padding: 0 20px;
+     	line-height: 35px;
+     }
+     #modal_content {
+     	text-align: center;
+     	font-size: 20px;
+     	padding: 20px 0px;
+     }
+     .btn_login {
+     	text-align: center;
+     }
+     .btn_login > a {
+     	width: 90px;
+     	height: 35px;
+     	border: 2px solid #2C3E50;
+     	font-size: 20px;
+     	border-radius: 25px;
+     	display: inline-block;
+     	text-align: center;
+     	font-weight: bold;
+     	color: #2C3E50;
+     	margin: 0px 20px 20px;
+     	line-height: 33px;
+     }
+     .btn_login > a:hover {
+		background-color: #2C3E50;
+		color: white;
+	 }
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		/* comment_list(); */
 	});
-	
 	
 	function comment_list() {
 		var bno = ${boardview.bno};
@@ -270,6 +332,17 @@
 		$("#frm_reply").submit();
 	});
 	
+	$(document).on("click", "#answer_btn", function(){
+		location.href="answer.bizpoll?bno=${boardview.bno}";
+	});
+	$(document).on("click", "#returnGo", function(){
+		location.href = "<%=referer%>";
+	});
+	$(document).on("click", "#boardUpdate", function(){
+		location.href="boardUpdate.bizpoll?bno=${boardview.bno}";
+	});
+	
+	
 	$(document).on("click", ".btn-danger", function(){
 		var bno = $("#bno").val();
 		var replycnt = $("#hidden_replycnt").val();
@@ -279,22 +352,21 @@
 			$("#knboard_detail_rspan").focus();
 			return false;
 		} else {
-			location.href="boarddelete.bizpoll?boardnum="+ bno;	
+			$("#modal_all").css("display", "block");
 		}
 	});
-	$(document).on("click", "#answer_btn", function(){
-		location.href="answer.bizpoll?bno=${boardview.bno}";
+	$(document).on("click", "#close_btn", function(){
+		$("#modal_all").css("display", "none");
 	});
-	$(document).on("click", "#returnGo", function(){
-		location.href = "<%=referer%>";
+	$(document).on("click", "#no_btn", function(){
+		$("#modal_all").css("display", "none");
 	});
-	
-	$(document).on("click", "#boardUpdate", function(){
-		location.href="boardUpdate.bizpoll?bno=${boardview.bno}";
+	$(document).on("click", "#yes_btn", function(){
+		location.href="boardDelete.bizpoll?bno=${boardview.bno}";
 	});
 </script>
 </head>
-<body>
+<body>  
 	<div id="board_wrap">
 		<div class="box box-primary">
 			<div class="box-header">
@@ -347,7 +419,7 @@
 				
 				<c:if test="${sessionScope.loginUser.id == boardview.writer}">
 					<button type="submit" class="reply_btn btn-warning btn-primary" id="boardUpdate">수정</button>
-					<button type="submit" class="reply_btn btn-danger btn-primary">삭제</button>
+					<button type="button" class="reply_btn btn-danger btn-primary" id="boardDelete">삭제</button>
 				</c:if>
 			</div>
 		</div>
@@ -419,8 +491,18 @@
 				</form>
 			</c:otherwise>
 		</c:choose>
-
-
+	</div>
+	
+	<div id="modal_all"> 	
+	     <div id="content_layout">
+	     	<div id="modal_header">게시글 삭제 <span id="close_btn"><i class="fa fa-close"></i></span></div>
+	     	<div id="modal_content">정말 <span class="point">게시글</span>을 삭제하시겠습니까?</div> 
+	        
+	        <div class="btn_login">
+	        	<a id="no_btn" href="#">아니오</a>
+	        	<a id="yes_btn" href="#">네</a>
+	        </div>
+	     </div>
 	</div>
 </body>
 <%@ include file="../include/footer.jsp" %> 
