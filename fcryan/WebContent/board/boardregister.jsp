@@ -237,11 +237,21 @@
 	$(document).on("click", ".btn-file", function(){
 		$("#uploadfile").click();
 	});
+	
 	$(document).on("change", "#uploadfile", function(){
-		var filename = this.files[0].name;
-		$("#file-name").text(filename);
-		$("#close_btn").css("display", "block");
+		var filesize = $(this)[0].files;
+		if(filesize.length < 1) {
+			$("#file-name").text("선택된 파일 없음");
+			$("#close_btn").css("display", "none");
+		} else {
+			var filename = this.files[0].name;
+			$("#file-name").text(filename);
+			$("#close_btn").css("display", "block");
+		}
 	});
+	
+
+	
 	$(document).on("click", "#close_btn", function(){
 		$("#uploadfile").replaceWith($("#uploadfile").clone(true));
 		$("#uploadfile").val("");
@@ -274,7 +284,7 @@
 					<label for="writer">작성자</label> <input type="text" id="writer" name="writer" class="form-control" value="${sessionScope.loginUser.id}" readonly="readonly">
 				</div>
 				<div id="file_wrap">
-					<input type="file" name="uploadfile" id="uploadfile" style="display: none;">
+					<input type="file" name="uploadfile" id="uploadfile">
 					<input type="button" class="btn btn-file" value="파일 선택"> 
 					<span class="files" id="file-name" style="height: 29px; border: none;" >선택된 파일 없음</span> 
 					<i class="fa fa-close" id="close_btn" style="display: none"></i>

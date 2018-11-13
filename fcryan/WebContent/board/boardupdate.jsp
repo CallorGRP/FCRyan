@@ -244,11 +244,19 @@
 	$(document).on("click", ".btn-file", function(){
 		$("#uploadfile").click();
 	});
+	
 	$(document).on("change", "#uploadfile", function(){
-		var filename = this.files[0].name;
-		$("#file-name").text(filename);
-		$("#close_btn").css("display", "block");
+		var filesize = $(this)[0].files;
+		if(filesize.length < 1) {
+			$("#file-name").text("선택된 파일 없음");
+			$("#close_btn").css("display", "none");
+		} else {
+			var filename = this.files[0].name;
+			$("#file-name").text(filename);
+			$("#close_btn").css("display", "block");
+		}
 	});
+	
 	$(document).on("click", "#close_btn", function(){
 		$("#uploadfile").replaceWith($("#uploadfile").clone(true));
 		$("#uploadfile").val("");
