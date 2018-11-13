@@ -325,7 +325,6 @@
 						<td colspan="2" style="border-right:0px">
 							<c:if test="${boardview.filesize > 0}">
 								<div id="download">
-								
 								<a href="download.bizpoll?file=${boardview.filename}">${boardview.filename}
 																			   (<fmt:formatNumber type="number" pattern="0.0" value="${boardview.filesize / 1024}"></fmt:formatNumber> kb)</a></div>
 							</c:if>

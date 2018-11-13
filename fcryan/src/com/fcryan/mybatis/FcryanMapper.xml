@@ -148,7 +148,6 @@
 	</update>
 	
 	<insert id="boardInsert" parameterType="com.fcryan.dto.BoardDTO">
-		
 		<choose>
 			<when test="content != null">
 				INSERT INTO fcryanboard(bno, title, content, writer, filename, filesize)
@@ -160,6 +159,17 @@
 			</otherwise>
 		</choose>
 	</insert>
+	
+	<update id="boardUpdate" parameterType="com.fcryan.dto.BoardDTO">
+		UPDATE fcryanboard SET
+			title = #{title},
+			writer = #{writer}, 
+			content = #{content},
+			filename = #{filename}, 
+			filesize = #{filesize}
+			WHERE bno = #{bno}
+	</update>
+	
 </mapper>
 
 

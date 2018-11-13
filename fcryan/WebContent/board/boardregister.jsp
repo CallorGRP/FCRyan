@@ -284,7 +284,7 @@
 					<label for="writer">작성자</label> <input type="text" id="writer" name="writer" class="form-control" value="${sessionScope.loginUser.id}" readonly="readonly">
 				</div>
 				<div id="file_wrap">
-					<input type="file" name="uploadfile" id="uploadfile">
+					<input type="file" name="uploadfile" id="uploadfile" style="display: none;">
 					<input type="button" class="btn btn-file" value="파일 선택"> 
 					<span class="files" id="file-name" style="height: 29px; border: none;" >선택된 파일 없음</span> 
 					<i class="fa fa-close" id="close_btn" style="display: none"></i>

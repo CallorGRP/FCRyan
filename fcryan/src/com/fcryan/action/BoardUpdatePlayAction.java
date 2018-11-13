@@ -21,33 +21,27 @@ public class BoardUpdatePlayAction implements Action{
 			throws ServletException, IOException {
 		String url = "boardList.bizpoll";
 
-		
 		// 파일 업로드 처리
 		File uploadDir = new File(Constants.UPLOAD_PATH);
 		
-		if(!uploadDir.exists()) {  // 저장할 경로가 없다면
-			uploadDir.mkdir();     // 디렉토리를 생성하세요.
+		if(!uploadDir.exists()) {  
+			uploadDir.mkdir();    
 		}
 		
-		// request를 확장시킨 MultipartRequest 생성
-		// request는 전부 String 타입
-		// 파일 <- request로는 전송 불가
-		// 파일 <- request를 향상시킨 MultipartRequset를 사용
-		// 파일뿐만 아니라 기존에 String 타입도 전부 multi타입으로 받아야함
 		MultipartRequest multi = new MultipartRequest(request,               // request
 				                                      Constants.UPLOAD_PATH, // 파일업로드 디렉토리
 				                                      Constants.MAX_UPLOAD,  // 업로도 최대 용량
 				                                      "UTF-8",               // 인코딩
 				                                      new DefaultFileRenamePolicy()); // 파일이름중복정책
 
-		String bno = multi.getParameter("bno");
+		int bno = Integer.parseInt(multi.getParameter("bno"));
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
 		String writer = multi.getParameter("writer");
 		String filename = " "; // (공백)
 		int filesize = 0;
 		String postfile = multi.getParameter("post-file-name");
-		System.out.println(bno + ", " + title + ", " + content + ", " + writer + ", " + postfile);
+//		System.out.println(bno + ", " + title + ", " + content + ", " + writer + ", " + postfile);
 		
 		// 파일먼저 삭제하고
 		File file = new File(Constants.UPLOAD_PATH + postfile);
@@ -72,19 +66,18 @@ public class BoardUpdatePlayAction implements Action{
 		if(filename == null || filename.trim().equals("")) {
 			filename = "-";
 		}
-		
-		System.out.println("현재 filename: "  + filename);
+//		System.out.println("현재 filename: "  + filename);
 		
 		
 		BoardDAO bDao = BoardDAO.getInstance();
-		BoardDTO bDto = new BoardDTO(title, content, writer, filename, filesize);
-		//int result = bDao.boardInsert(bDto);  update로 변경
+		BoardDTO bDto = new BoardDTO(bno, title, content, writer, filename, filesize);
+		int result = bDao.boardUpdate(bDto);  
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath(url);
 		forward.setRedirect(true);
 		
-		return null;
+		return forward;
 	}
 
 }

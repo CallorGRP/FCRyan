@@ -17,7 +17,7 @@ public class BoardUpdateAction implements Action{
 		String url = "board/boardupdate.jsp";
 		
 		String bno = request.getParameter("bno");
-		System.out.println("===>BNO: " + bno);
+//		System.out.println("===>BNO: " + bno);
 		
 		BoardDAO bDao = BoardDAO.getInstance();
 		BoardDTO bDto = bDao.boardDetailView(bno);

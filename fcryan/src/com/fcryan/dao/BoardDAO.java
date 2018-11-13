@@ -133,6 +133,20 @@ public class BoardDAO {
 		return result;
 	}
 	
+	public int boardUpdate(BoardDTO bDto) {
+		sqlSession = sqlSessionFactory.openSession();
+		int result = 0;
+		try {
+			result = sqlSession.update("boardUpdate", bDto);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
+	
 	
 	
 	
