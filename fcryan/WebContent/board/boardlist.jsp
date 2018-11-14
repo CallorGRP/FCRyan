@@ -127,6 +127,14 @@ h3 {
 	color: white;
 	border-radius: 25px;
 	padding: 2px 5px;
+	animation-name: twinkle;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes twinkle {
+    0%   {opacity: 0;}
+    100% {opacity: 1;}
 }
 .box-title {
 	margin: 20px 0 10px 0;

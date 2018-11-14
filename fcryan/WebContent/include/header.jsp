@@ -47,7 +47,6 @@
 		position: absolute;
 		top: 0px;
 		width: 100%;
-		transition: 0.6s;
 	}
 	/* header(로그인, 회원가입, 마이페이지, 고객센터) */
 	#header_line1 {
@@ -133,6 +132,7 @@
 		height: 80px;
 		margin: 0px auto;
 		box-sizing: border-box;
+		transition: 0.1s;
 	}
 	#header_line2 img {
 		display: inline-block;
@@ -289,21 +289,24 @@
 		bottom: -100px;
 		text-align: center;
 		font-size: 25px;
+		transition: 0.5s;
 	}
 	#myBtn:hover {
 		background-color: #18BC9C;
-		border-top: 2px dashed #2C3E50;
+	}
+	#small_logo > a{
+		color: inherit;
 	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#myBtn").css("display", "none");
+		$("#myBtn").css("opacity", "0");
 	});
 	$(window).scroll(function(){
 		if($(document).scrollTop() > 200) {
-			$("#myBtn").css("display", "block");
+			$("#myBtn").css("opacity", "1");
 		} else {
-			$("#myBtn").css("display", "none");
+			$("#myBtn").css("opacity", "0");
 		}
 	});
 	$(document).on("click", "#myBtn", function(){
@@ -375,7 +378,7 @@
 			<div id="header_line3">
 				<div id="header_line3_in">
 					<div id="leftmenu">
-						<span>FCRyan</span>
+						<span id="small_logo"><a href="<%=path%>/index.bizpoll">FCRyan</a></span>
 						<div class="header_line2_wrap_search" id="small_wrap_search">
 							<div class="header_line2_search">
 								<input class="search_keyword" id="small_search_keyword" type="text" placeholder="검색어를 입력하세요.">
@@ -414,12 +417,12 @@
 		
 		function scrollFunction() {
 			if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-				$("#hide_menu").css("top", "-140px");
-				$("#header_line3").css("margin-top", "0").css("border-top", "5px solid #2C3E50").css("height", "54px");
+				$("#header_line2").css("display", "none");
+				$("#header_line3").css("margin-top", "30px");
 				$("#leftmenu").css("opacity", "1");
 			} else {
-				$("#hide_menu").css("top", "0px");
-				$("#header_line3").css("margin-top", "140px").css("border-top", "0px").css("height", "49px");
+				$("#header_line2").css("display", "block");
+				$("#header_line3").css("margin-top", "140px");
 				$("#leftmenu").css("opacity", "0");
 				
 			}
