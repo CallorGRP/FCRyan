@@ -30,6 +30,8 @@ public class BoardUpdatePlayAction implements Action{
 			uploadDir.mkdir();    
 		}
 		
+		
+		
 		MultipartRequest multi = new MultipartRequest(request,               // request
 				                                      Constants.UPLOAD_PATH, // 파일업로드 디렉토리
 				                                      Constants.MAX_UPLOAD,  // 업로도 최대 용량
@@ -44,6 +46,9 @@ public class BoardUpdatePlayAction implements Action{
 		int filesize = 0;
 		String nowFileName = multi.getParameter("now-file-name");
 		String nFileSize = multi.getParameter("now-file-size");
+		
+		// nowFileSize 숫자로 변환
+		// 값이 없으면 0 부여, 값이 있으면 숫자로 변환
 		int nowFileSize = 0;
 		if(!nFileSize.equals("")) {
 			nowFileSize = Integer.parseInt(nFileSize);
@@ -60,8 +65,7 @@ public class BoardUpdatePlayAction implements Action{
 		int flag = 0;
 		if(nowFileName.equals(pfilename) && nowFileSize == 0) {
 			// 파일이름이 같으면서, 
-			// 사이즈가 같거나,
-			// 또는 사이즈가 0이면
+			// 사이즈가 0이면
 			// 파일 지우지 않음, filename과 filesize도 수정 하면 안됨
 			flag = 1;
 		} else {
@@ -75,26 +79,27 @@ public class BoardUpdatePlayAction implements Action{
 			while(files.hasMoreElements()) {
 				String file1 = (String)files.nextElement();
 				System.out.println("file1:" + file1);
-				filename = multi.getFilesystemName(file1); // 첨부파일의 파일이름
+ 	            // multi.getOriginalFileName(file1); // 그냥 오리지날 파일네임
+				filename = multi.getFilesystemName(file1); // 파일네임을 가지고 오돼(중복이면 중복정책이 부여된 값을 가져옴)
 				System.out.println("저장 된 첨부파일: " + filename);
 				if(nowFileSize != 0) {
 					String result = filename.substring(nowFileName.length());
 					System.out.println("TEST: " + nowFileName + ", " + filename + ", " + result);
 					
+					// 파일명을 현재 파일명으로 수정!
 					if(result.length() > 0) {
-						File file = new File(Constants.UPLOAD_PATH + filename);
-						File fileNew = new File(Constants.UPLOAD_PATH + nowFileName);
-						file.renameTo(fileNew);
+						File file = new File(Constants.UPLOAD_PATH + filename); // AAA1
+						File fileNew = new File(Constants.UPLOAD_PATH + nowFileName); // AAA
+						file.renameTo(fileNew); // AAA1 -> AAA 이름 변경
 						
+						// DB에 넣을 정보
 						filename = nowFileName;
 						filesize = nowFileSize;
-
 					}
 				}
 								
 				File f1 = multi.getFile(file1);            // 첨부파일의 파일
-				
-				if(f1 != null) {
+				if(f1 != null) { 
 					filesize = nowFileSize;
 				}
 			}

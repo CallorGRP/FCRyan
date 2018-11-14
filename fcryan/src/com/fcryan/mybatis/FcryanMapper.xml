@@ -170,8 +170,12 @@
 					</if>
 						content = #{content}
 						WHERE bno = #{bno}				
-
 	</update>
+	
+	<delete id="boardDelete" parameterType="String">
+		DELETE FROM fcryanboard
+		WHERE bno = #{bno}
+	</delete>
 	
 </mapper>
 

@@ -248,28 +248,30 @@
 	});
 	
 	$(document).on("change", "#uploadfile", function(){
-		var filesize = $(this)[0].files;
+		var filesize = $(this)[0].files; /* File들을 첨부할 수 있으니(배열) */
 		if(filesize.length < 1) {
 			$("#file-name").text("선택된 파일 없음");
 			$("#close_btn").css("display", "none");
 		} else {
+			/* 첨부파일이 있다면 첨부파일의 이름과 사이즈를 불러옴 */
 			var filename = this.files[0].name;
 			var filesize = this.files[0].size;
 			
-			var size = this.files[0].size;
-			var maxSize  = 10 * 1024 * 1024;
+			var maxSize  = 10 * 1024 * 1024; /* 10mb 용량 제한  */
 			
-	        if(size > maxSize) {
+	        if(filesize > maxSize) { /* 용량 제한걸림 */
 	            alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
 	            $("#file-name").text("선택된 파일 없음");
+	            /* 화면단에서는 input type="file" 용량제한하는 코드 없음
+	                        그래서 경고창은 뜨지만 실제 10mb 넘는 파일이 들어가 있음
+	                        반드시 초기화를 시켜서 지워줄 것!!! 안그러면 Action단에서 에러발생*/
 	            $("#uploadfile").val("");
 	            $("#now-file-size").val(0);
-	        } else {
+	        } else { /* 첨부 가능 */
 	        	$("#now-file-size").val(filesize);
 				$("#file-name").text(filename);
 				$("#close_btn").css("display", "block");
 	        }
-
 		}
 	});
 	

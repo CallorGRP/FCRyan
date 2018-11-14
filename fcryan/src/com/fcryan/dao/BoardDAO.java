@@ -133,7 +133,7 @@ public class BoardDAO {
 		return result;
 	}
 	
-	public  void boardUpdate(BoardDTO bDto) {
+	public void boardUpdate(BoardDTO bDto) {
 		sqlSession = sqlSessionFactory.openSession();
 		int result = 0;
 		try {
@@ -146,6 +146,18 @@ public class BoardDAO {
 		}
 	}
 	
+	public void boardDelete(String bno) {
+		sqlSession = sqlSessionFactory.openSession();
+		
+		try {
+			sqlSession.delete("boardDelete", bno);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	
 	
