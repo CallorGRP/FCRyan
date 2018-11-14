@@ -255,9 +255,21 @@
 		} else {
 			var filename = this.files[0].name;
 			var filesize = this.files[0].size;
-			$("#now-file-size").val(filesize);
-			$("#file-name").text(filename);
-			$("#close_btn").css("display", "block");
+			
+			var size = this.files[0].size;
+			var maxSize  = 10 * 1024 * 1024;
+			
+	        if(size > maxSize) {
+	            alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+	            $("#file-name").text("선택된 파일 없음");
+	            $("#uploadfile").val("");
+	            $("#now-file-size").val(0);
+	        } else {
+	        	$("#now-file-size").val(filesize);
+				$("#file-name").text(filename);
+				$("#close_btn").css("display", "block");
+	        }
+
 		}
 	});
 	
