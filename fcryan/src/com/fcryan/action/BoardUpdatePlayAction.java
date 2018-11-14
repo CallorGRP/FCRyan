@@ -43,8 +43,11 @@ public class BoardUpdatePlayAction implements Action{
 		String filename = " "; // (공백)
 		int filesize = 0;
 		String nowFileName = multi.getParameter("now-file-name");
-		String nowFileSize = multi.getParameter("now-file-size");
-		
+		String nFileSize = multi.getParameter("now-file-size");
+		int nowFileSize = 0;
+		if(!nFileSize.equals("")) {
+			nowFileSize = Integer.parseInt(nFileSize);
+		}
 		
 		// 과거 filename과 filesize 불러오기		
 		BoardDAO bDao = BoardDAO.getInstance();
@@ -55,7 +58,7 @@ public class BoardUpdatePlayAction implements Action{
 		System.out.println("현재 첨부파일: " + nowFileName + ", " + nowFileSize);
 		
 		int flag = 0;
-		if(nowFileName.equals(pfilename) && (nowFileSize.equals(pfilesize) || nowFileSize.equals(""))) {
+		if(nowFileName.equals(pfilename) && nowFileSize == 0) {
 			// 파일이름이 같으면서, 
 			// 사이즈가 같거나,
 			// 또는 사이즈가 0이면
@@ -71,12 +74,28 @@ public class BoardUpdatePlayAction implements Action{
 			
 			while(files.hasMoreElements()) {
 				String file1 = (String)files.nextElement();
+				System.out.println("file1:" + file1);
 				filename = multi.getFilesystemName(file1); // 첨부파일의 파일이름
-				System.out.println("파일이름 왜 안바뀜: " + filename);
+				System.out.println("저장 된 첨부파일: " + filename);
+				if(nowFileSize != 0) {
+					String result = filename.substring(nowFileName.length());
+					System.out.println("TEST: " + nowFileName + ", " + filename + ", " + result);
+					
+					if(result.length() > 0) {
+						File file = new File(Constants.UPLOAD_PATH + filename);
+						File fileNew = new File(Constants.UPLOAD_PATH + nowFileName);
+						file.renameTo(fileNew);
+						
+						filename = nowFileName;
+						filesize = nowFileSize;
+
+					}
+				}
+								
 				File f1 = multi.getFile(file1);            // 첨부파일의 파일
 				
 				if(f1 != null) {
-					filesize = (int)f1.length(); // 첨부파일의 파일 사이즈 저장
+					filesize = nowFileSize;
 				}
 			}
 		} catch (Exception e) {
@@ -85,6 +104,7 @@ public class BoardUpdatePlayAction implements Action{
 		if(filename == null || filename.trim().equals("")) {
 			filename = "-";
 		}
+		
 		if(flag == 1) {
 			filename = "no";
 		}
