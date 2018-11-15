@@ -29,6 +29,13 @@ public class BoardListAction implements Action{
 //		System.out.println("페이지번호: " + page);
 		criDto.setPage(page);
 		
+		String code = "new";
+		if(request.getParameter("key") != null) {
+			code = request.getParameter("key");
+		}
+		criDto.setCode(code);
+		request.setAttribute("code", code);
+		
 		String flag = null;
 		String keyword = null;
 		if(request.getParameter("keyword") != null) {
@@ -36,12 +43,11 @@ public class BoardListAction implements Action{
 			keyword = request.getParameter("keyword");
 			criDto.setFlag(flag);
 			criDto.setKeyword(keyword);
-			System.out.println(page + ", " + flag + ", " + keyword);
 			request.setAttribute("flag", flag);
 			request.setAttribute("keyword", keyword);
 		}
 		
-		
+		System.out.println(page + ", " + flag + ", " + keyword + ", " + code);
 		
 		BoardDAO bDao = BoardDAO.getInstance();
 		// 게시글 목록(정보들) 출력

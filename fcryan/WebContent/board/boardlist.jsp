@@ -154,15 +154,24 @@ h3 {
 .good_cnt {
 	color: #FF0000;
 }
+.good_cnt > i {
+	font-size: 12px;
+	margin-right: 2px;
+	display: inline-block;
+}
 .pagination * {
 	font-family: 'Sunflower', sans-serif!important;
 	font-weight: bold;
 	display: inline-block;
 	height: 24px;
 }
+
 .pagination a {
 	padding: 0px 7px;
 	line-height: 24px;
+}
+#order_board > span {
+	cursor: pointer;
 }
 </style>
 <script type="text/javascript">
@@ -197,10 +206,10 @@ h3 {
 					<h3 class="box-title">질문 게시판</h3>
 					<div>
 						<div id="order_board">
-							<span>최신순</span>
-							<span>추천순</span>
-							<span>조회순</span>
-							<span>댓글순</span>
+							<span><a href="boardList.bizpoll?key=new">최신순</a></span>
+							<span><a href="boardList.bizpoll?key=good">추천순</a></span>
+							<span><a href="boardList.bizpoll?key=reply">댓글순</a></span>
+							<span><a href="boardList.bizpoll?key=cnt">조회순</a></span>
 						</div>						
 						<button class="btn btn-primary" id="boardAdd">게시글 등록</button>
 					</div>
@@ -301,7 +310,7 @@ h3 {
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
 								<li <c:out value="${pageMaker.criDto.page == idx ? 'class=active':''}"/>>
-									<a href="boardList.bizpoll?page=${idx}&flag=${flag}&keyword=${keyword}">${idx}</a>
+									<a href="boardList.bizpoll?page=${idx}&flag=${flag}&keyword=${keyword}&key=${code}">${idx}</a>
 								</li>
 							</c:forEach>
 

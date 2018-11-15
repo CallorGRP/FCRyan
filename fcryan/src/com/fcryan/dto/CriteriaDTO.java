@@ -4,12 +4,22 @@ package com.fcryan.dto;
 public class CriteriaDTO {
 	private int page; // 2       // 페이지 번호(하단의 번호들 클릭)
 	private int perPageNum; // 10  // 한 페이지에 보여줄 게시글 수
-	private String keyword;
-	private String flag;
+	private String keyword; // 검색 키워드
+	private String flag;    // 검색 타입
+	private String code;    // 정렬 타입
 	
 	public CriteriaDTO() {
 		this.page = 1;
 		this.perPageNum = 10;
+	}
+	
+	public CriteriaDTO(int page, int perPageNum, String keyword, String flag, String code) {
+		super();
+		this.page = page;
+		this.perPageNum = perPageNum;
+		this.keyword = keyword;
+		this.flag = flag;
+		this.code = code;
 	}
 
 	public CriteriaDTO(int page, int perPageNum, String keyword) {
@@ -61,8 +71,13 @@ public class CriteriaDTO {
 	public void setFlag(String flag) {
 		this.flag = flag;
 	}
-	
-	
-	
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 	
 }
