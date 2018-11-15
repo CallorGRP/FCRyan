@@ -205,12 +205,6 @@ h3 {
 						<button class="btn btn-primary" id="boardAdd">게시글 등록</button>
 					</div>
 				</div>
-				
-				
-
-
-
-
 
 				<div class="box-body">
 					<table class="table table-boarded">

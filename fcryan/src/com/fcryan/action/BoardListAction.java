@@ -61,6 +61,7 @@ public class BoardListAction implements Action{
 		request.setAttribute("totalCount", totalCount);
 		request.setAttribute("pageMaker", pageMaker);
 		
+		
 //		System.out.println("================================");
 //		System.out.println(pageMaker.toString());
 		

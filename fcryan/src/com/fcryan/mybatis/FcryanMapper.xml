@@ -196,6 +196,12 @@
 			WHERE bno = #{bno}
 	</update>
 	
+	<update id="ReplyCntMinus">
+		UPDATE fcryanboard SET
+			replycnt = replycnt - 1
+			WHERE bno = #{bno}
+	</update>
+	
 	<delete id="replyDeleteAll" parameterType="String">
 		DELETE FROM fcryanreply
 		WHERE bno = #{bno}

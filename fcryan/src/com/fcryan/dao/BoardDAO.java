@@ -159,7 +159,7 @@ public class BoardDAO {
 		}
 	}
 	
-	public void boardReplyCnt(int bno) {
+	public void boardReplyCntPlus(int bno) {
 		sqlSession = sqlSessionFactory.openSession();
 		
 		try {
@@ -172,6 +172,19 @@ public class BoardDAO {
 		}
 	}
 	
+	
+	public void boardReplyCntMinus(String bno) {
+		sqlSession = sqlSessionFactory.openSession();
+		
+		try {
+			sqlSession.update("ReplyCntMinus", bno);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+	}
 	
 	
 	

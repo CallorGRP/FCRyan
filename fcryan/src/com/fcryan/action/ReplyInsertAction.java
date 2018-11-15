@@ -29,7 +29,7 @@ public class ReplyInsertAction implements Action{
 		
 		// bno 게시글 reply_cnt +1 증가
 		BoardDAO bDao = BoardDAO.getInstance();
-		bDao.boardReplyCnt(bno);
+		bDao.boardReplyCntPlus(bno);
 		
 		return null;
 	}

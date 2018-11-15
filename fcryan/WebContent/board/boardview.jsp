@@ -348,10 +348,11 @@
 	});
 	$(document).on("click", ".reply_del", function(){
 		var rno = $(this).attr("data_num");
+		var bno = ${boardview.bno};
 		
 		$.ajax({
 			url: "replyDelete.bizpoll",
-			data: "rno=" + rno,
+			data: "rno=" + rno + "&bno=" + bno,
 			success: function(result) {
 				comment_list();
 			},
