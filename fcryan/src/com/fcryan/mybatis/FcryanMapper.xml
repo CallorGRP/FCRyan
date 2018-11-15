@@ -177,6 +177,17 @@
 		WHERE bno = #{bno}
 	</delete>
 	
+	<!-- ========================================================== -->
+	<!-- ReplyDAO -->
+	<select id="replyListAll" parameterType="String" resultType="com.fcryan.dto.ReplyDTO">
+		SELECT * FROM fcryanreply
+		WHERE bno = #{bno}
+		ORDER BY rno ASC
+	</select>
+	
+	
+	
+	
 </mapper>
 
 

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ include file="../include/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -238,9 +236,9 @@ h3 {
 								</c:forEach> --%>
 								${bDto.title}
 								
-								<%-- <c:if test="${bDto.replycnt > 0}">
+								<c:if test="${bDto.replycnt > 0}">
 									[${bDto.replycnt}]
-								</c:if> --%>
+								</c:if>
 								
 								<c:if test="${today2 == regdate2}">
 									<span class="new_time">New</span>

@@ -20,6 +20,7 @@ import com.fcryan.action.BoardListAction;
 import com.fcryan.action.BoardUpdateAction;
 import com.fcryan.action.BoardUpdatePlayAction;
 import com.fcryan.action.BoardViewcntAction;
+import com.fcryan.action.CommentListAction;
 import com.fcryan.action.ConstractAction;
 import com.fcryan.action.IdCheckAction;
 import com.fcryan.action.IndexAction;
@@ -154,6 +155,9 @@ public class BizpollFrontController extends HttpServlet {
 			forward = action.excute(request, response);
 		} else if(command.equals("/boardDelete.bizpoll")) {
 			action = new BoardDeletePlayAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/commentlist.bizpoll")) {
+			action = new CommentListAction();
 			forward = action.excute(request, response);
 		} 
 		

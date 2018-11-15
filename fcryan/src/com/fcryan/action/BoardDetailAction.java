@@ -1,13 +1,17 @@
 package com.fcryan.action;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fcryan.dao.BoardDAO;
+import com.fcryan.dao.ReplyDAO;
 import com.fcryan.dto.BoardDTO;
+import com.fcryan.dto.ReplyDTO;
 
 public class BoardDetailAction implements Action{
 
@@ -22,7 +26,6 @@ public class BoardDetailAction implements Action{
 		
 		BoardDAO bDao = BoardDAO.getInstance();
 		BoardDTO bDto = bDao.boardDetailView(bno);
-		
 		request.setAttribute("boardview", bDto);
 		
 		ActionForward forward = new ActionForward();

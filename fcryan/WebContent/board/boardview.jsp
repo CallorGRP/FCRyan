@@ -65,7 +65,9 @@
 		padding: 20px;
 		box-sizing: border-box;
 	}
-	
+ 	.reply_list:nth-child(2n) {
+		margin-left: 130px;
+	}
 	.box {
 		margin: 10px;
 	}
@@ -75,10 +77,14 @@
 		border-radius: 4px;
 		padding: 10px;
 		background-color: white;
+		margin-bottom: 15px;
+		width: 602px;
+		box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
 	}
 	
+	
 	.reply_writer {
-		color: black;
+		color: orange;
 		font-weight: bold;
 		font-size: 16px;
 		text-decoration: none;
@@ -86,26 +92,24 @@
 	
 	#replylist_date {
 		float: right;
-		color: black;
+		color: #2C3E50;
+		font-size: 12px;
 	}
 	
 	.replylist_textarea {
 		padding: 5px;
-		width: 718px;
+		width: 600px;
 		resize: none;
 		border-radius: 4px;
 		box-sizing: border-box;
 		border: 1px solid #BBBBBB;
 		font-size: 13px;
+		margin-top: 10px;
 	}
 	
 	.reply_login {
 		border-top: 1px solid black;
 		padding-left: 10px;
-	}
-	
-	#reply_nologin {
-		
 	}
 	
 	.reply_nologin_span {
@@ -296,15 +300,15 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
-		/* comment_list(); */
+		/* 문서가 준비되면 댓글 목록을 조회하는 AJAX 실행 */
+		comment_list();
 	});
 	
 	function comment_list() {
-		var bno = ${boardview.bno};
 		$.ajax({
 			type: "post",
 			url: "commentlist.bizpoll",
-			data: "bno=" + bno,
+			data: "bno=${boardview.bno}",
 			success: function(result) {
 				$("#commentList").html(result);
 			}
@@ -428,41 +432,8 @@
 	<div id="reply_wrap">
 		
 		<div id="commentList">
-			<div id="reply_wrap_title">
-				<span id="knboard_detail_rspan">댓글 ${boardview.replycnt}</span>
-				<input type="hidden" id="hidden_replycnt" value="${boardview.replycnt}">
-			</div>
-			
-			<div id="detail_reply">
-			<c:if test="${boardview.replycnt == 0}">
-				<div class="reply_list">
-					<div class="reply_line2">
-						등록된 댓글이 없습니다. 첫번째 댓글을 남겨주세요:)
-					</div>
-				</div>
-			</c:if>	
-				<c:forEach items="${replyview}" var="replyview">
-					<div class="reply_list">
-						<div class="reply_line1">
-							
-							<a href="#" class="reply_writer">${replyview.writer}</a> 
-							
-							
-							<c:if test="${sessionScope.loginUser.mid == replyview.writer}">
-								<a href="#" class="reply_del" data_num="${replyview.rno}">삭제</a>
-							</c:if>
-							
-							
-							<span id="replylist_date">${replyview.regdate}</span>
-						</div>
-						<div class="reply_line2">
-							<textarea class="replylist_textarea" name="replylist_textarea"
-								id="replylist_textarea" rows="" cols="150" readonly="readonly">${replyview.content}</textarea>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
 		</div>
+		
 		<c:choose>
 			<c:when test="${empty sessionScope.loginUser}">
 				<div class="reply_login" id="reply_nologin">
