@@ -20,6 +20,13 @@ public class ReplyDTO {
 		this.bno = bno;
 	}
 	
+	public ReplyDTO(String content, String writer, int bno) {
+		super();
+		this.content = content;
+		this.writer = writer;
+		this.bno = bno;
+	}
+
 	public int getRno() {
 		return rno;
 	}

@@ -84,7 +84,7 @@
 	
 	
 	.reply_writer {
-		color: orange;
+		color: #2C3E50;
 		font-weight: bold;
 		font-size: 16px;
 		text-decoration: none;
@@ -297,6 +297,13 @@
 		background-color: #2C3E50;
 		color: white;
 	 }
+	 .error {
+		color: #FF3636;
+		font-size: 12px;
+		display: block;
+		display: none;
+		margin-top: 8px;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -314,26 +321,47 @@
 			}
 		});
 	}
-	
+	$(document).on("click", "#reply_btn", function(){
+		var content = $("#replyInsert").val();
+		if(content == "") {
+			$("#replyInsert").focus();			
+			$(".error").css("display", "block");
+			return false;	
+		} else {
+			var bno = ${boardview.bno};
+			$("#re_bno").val(bno);
+			
+			$.ajax({
+				url: "replyInsert.bizpoll",
+				type: "POST",
+				data: $("#frm_reply").serialize(),
+				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+				success: function() {
+						comment_list();
+						$("#replyInsert").val("");
+				},
+				error: function() {
+					alert("System Error!!!");
+				}
+			});	
+		}
+	});
 	$(document).on("click", ".reply_del", function(){
 		var rno = $(this).attr("data_num");
 		
 		$.ajax({
-			url: "replydelete.bizpoll",
-			type: "POST",
-			dataType: "json",
+			url: "replyDelete.bizpoll",
 			data: "rno=" + rno,
-			success: function() {
+			success: function(result) {
 				comment_list();
 			},
 			error: function() {
 				alert("System Error!!!");
 			}
 		});
-	});
-	
-	$(document).on("click", "#reply_btn", function(){
-		$("#frm_reply").submit();
+		
+		
+		
 	});
 	
 	$(document).on("click", "#answer_btn", function(){
@@ -433,35 +461,6 @@
 		
 		<div id="commentList">
 		</div>
-		
-		<c:choose>
-			<c:when test="${empty sessionScope.loginUser}">
-				<div class="reply_login" id="reply_nologin">
-					<span class="reply_nologin_span"><a href="login.bizpoll"
-						class="reply_logina">로그인</a>을 하시면 댓글을 등록할 수 있습니다.</span>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<form action="replyinsert.bizpoll" method="POST" name="frm_reply" id="frm_reply">
-					<div id="detail_reply" class="reply_login">
-						<div class="reply_list">
-							<div class="reply_line1">
-								<a href="#" class="reply_writer">작성자: ${boardview.writer}</a>
-							</div>
-							<div class="reply_line2">
-								<textarea class="replylist_textarea" name="re_textarea"
-									id="replylist_textarea" rows="" cols="150"
-									placeholder="댓글을 남겨보세요."></textarea>
-								<a href="#" class="reply_btn" id="reply_btn">댓글등록</a>
-								
-								<input type="hidden" name="re_writer" value="${sessionScope.loginUser.id}">
-								<input type="hidden" name="re_bno" value="${boardview.bno}">
-							</div>
-						</div>
-					</div>
-				</form>
-			</c:otherwise>
-		</c:choose>
 	</div>
 	
 	<div id="modal_all"> 	

@@ -36,6 +36,8 @@ import com.fcryan.action.MemberUpdatePlayAction;
 import com.fcryan.action.PwCheckAction;
 import com.fcryan.action.PwUpdateAction;
 import com.fcryan.action.PwUpdatePlayAction;
+import com.fcryan.action.ReplyDeleteAction;
+import com.fcryan.action.ReplyInsertAction;
 import com.fcryan.action.WelcomeDeleteAction;
 
 /**
@@ -158,6 +160,12 @@ public class BizpollFrontController extends HttpServlet {
 			forward = action.excute(request, response);
 		} else if(command.equals("/commentlist.bizpoll")) {
 			action = new CommentListAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/replyInsert.bizpoll")) {
+			action = new ReplyInsertAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/replyDelete.bizpoll")) {
+			action = new ReplyDeleteAction();
 			forward = action.excute(request, response);
 		} 
 		

@@ -33,11 +33,41 @@
 					</span>
 				</div>
 				<div class="reply_line2">
-					<textarea class="replylist_textarea" name="replylist_textarea"
+					<textarea class="replylist_textarea" 
 						id="replylist_textarea" rows="" cols="150" readonly="readonly">${replyview.content}</textarea>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
+	
+	<c:choose>
+			<c:when test="${empty sessionScope.loginUser}">
+				<div class="reply_login" id="reply_nologin">
+					<span class="reply_nologin_span"><a href="login.bizpoll"
+						class="reply_logina">로그인</a>을 하시면 댓글을 등록할 수 있습니다.</span>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<form action="replyinsert.bizpoll" method="POST" name="frm_reply" id="frm_reply">
+					<div id="detail_reply" class="reply_login">
+						<div class="reply_list">
+							<div class="reply_line1">
+								<a href="#" class="reply_writer">작성자: ${sessionScope.loginUser.id}</a>
+							</div>
+							<div class="reply_line2">
+								<textarea class="replylist_textarea" name="re_textarea"
+									id="replyInsert" rows="" cols="150"
+									placeholder="댓글을 남겨보세요."></textarea>
+								<span class="error">제목을 입력해 주세요.</span>
+								<a href="#" class="reply_btn" id="reply_btn">댓글등록</a>
+								
+								<input type="hidden" name="re_writer" value="${sessionScope.loginUser.id}">
+								<input type="hidden" id="re_bno" name="re_bno">
+							</div>
+						</div>
+					</div>
+				</form>
+			</c:otherwise>
+		</c:choose>
 </body>
 </html>

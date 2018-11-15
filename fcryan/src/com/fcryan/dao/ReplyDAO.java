@@ -31,6 +31,49 @@ public class ReplyDAO {
 		}
 		return list;
 	}
+	
+	public int replyInsert(ReplyDTO rDto) {
+		int result = 0;
+		sqlSession = sqlSessionFactory.openSession();
+		try {
+			result = sqlSession.insert("replyInsert", rDto);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
+	
+	public void replyDeleteAll(String bno) {
+		sqlSession = sqlSessionFactory.openSession();
+		try {
+			sqlSession.delete("replyDeleteAll", bno);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	public void replyDelete(String rno) {
+		sqlSession = sqlSessionFactory.openSession();
+		try {
+			sqlSession.delete("replyDelete", rno);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
+	
+	
+	
+	
 }
 
 

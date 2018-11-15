@@ -185,9 +185,26 @@
 		ORDER BY rno ASC
 	</select>
 	
+	<insert id="replyInsert" parameterType="com.fcryan.dto.ReplyDTO">
+		INSERT INTO fcryanreply(rno, content, writer, bno) 
+		VALUES(seq_fcryanreply_rno.NEXTVAL, #{content}, #{writer}, #{bno})
+	</insert>
 	
+	<update id="ReplyCntPlus">
+		UPDATE fcryanboard SET
+			replycnt = replycnt + 1
+			WHERE bno = #{bno}
+	</update>
 	
+	<delete id="replyDeleteAll" parameterType="String">
+		DELETE FROM fcryanreply
+		WHERE bno = #{bno}
+	</delete>
 	
+	<delete id="replyDelete" parameterType="String">
+		DELETE FROM fcryanreply
+		WHERE rno = #{rno}
+	</delete>
 </mapper>
 
 

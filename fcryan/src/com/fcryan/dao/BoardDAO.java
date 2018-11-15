@@ -159,6 +159,19 @@ public class BoardDAO {
 		}
 	}
 	
+	public void boardReplyCnt(int bno) {
+		sqlSession = sqlSessionFactory.openSession();
+		
+		try {
+			sqlSession.update("ReplyCntPlus", bno);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 	
 	
 	

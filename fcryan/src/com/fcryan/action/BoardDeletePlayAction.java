@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fcryan.common.Constants;
 import com.fcryan.dao.BoardDAO;
+import com.fcryan.dao.ReplyDAO;
 import com.fcryan.dto.BoardDTO;
 
 public class BoardDeletePlayAction implements Action{
@@ -20,21 +21,30 @@ public class BoardDeletePlayAction implements Action{
 		
 		String bno = request.getParameter("bno");
 		System.out.println("===> " + bno);
+
+		// 댓글 삭제
+		ReplyDAO rDao = ReplyDAO.getInstance();
+		rDao.replyDeleteAll(bno);
 		
 		
-		
+		// 첨부파일 삭제		
 		BoardDAO bDao = BoardDAO.getInstance();
 		BoardDTO bDto = bDao.boardDetailView(bno);
+		
 		String filename = bDto.getFilename();
 		if(!filename.equals("-")) {
 			File file = new File(Constants.UPLOAD_PATH + filename);
 			file.delete();
 		}
+		
+		// 게시글 삭제
 		bDao.boardDelete(bno);
+		
+		
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath(url);
-		forward.setRedirect(false);
+		forward.setRedirect(true);
 		
 		return forward;
 	}
