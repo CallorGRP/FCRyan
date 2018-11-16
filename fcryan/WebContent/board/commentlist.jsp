@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/include.jsp" %>
+<%
+	String path = request.getContextPath(); //컨텍스트 경로
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="<%=path%>/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
 	<div id="reply_wrap_title">
@@ -33,8 +37,8 @@
 					</span>
 				</div>
 				<div class="reply_line2">
-					<textarea class="replylist_textarea" 
-						id="replylist_textarea" rows="" cols="150" readonly="readonly">${replyview.content}</textarea>
+					<div class="replylist_textarea" 
+						id="replylist_textarea">${replyview.content}</div>
 				</div>
 			</div>
 		</c:forEach>
@@ -50,7 +54,7 @@
 			<c:otherwise>
 				<form action="replyinsert.bizpoll" method="POST" name="frm_reply" id="frm_reply">
 					<div id="detail_reply" class="reply_login">
-						<div class="reply_list">
+						<div class="reply_list reply_insert">
 							<div class="reply_line1">
 								<a href="#" class="reply_writer">작성자: ${sessionScope.loginUser.id}</a>
 							</div>
@@ -58,7 +62,17 @@
 								<textarea class="replylist_textarea" name="re_textarea"
 									id="replyInsert" rows="" cols="150"
 									placeholder="댓글을 남겨보세요."></textarea>
-								<span class="error">제목을 입력해 주세요.</span>
+								<script type="text/javascript">
+									var oEditors = [];
+									nhn.husky.EZCreator.createInIFrame({
+									    oAppRef: oEditors,
+									    elPlaceHolder: "replyInsert",
+									    sSkinURI: "<%=path%>/smarteditor/SmartEditor2Skin.html",
+									    fCreator: "createSEditor2",
+									    htParams: { fOnBeforeUnload : function(){} } /* 에디터 내용 변경 경고창 끄기 */
+									});
+								</script>
+								<span class="error">내용을 입력해 주세요.</span>
 								<a href="#" class="reply_btn" id="reply_btn">댓글등록</a>
 								
 								<input type="hidden" name="re_writer" value="${sessionScope.loginUser.id}">
@@ -71,3 +85,8 @@
 		</c:choose>
 </body>
 </html>
+
+
+
+
+

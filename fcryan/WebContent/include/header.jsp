@@ -45,11 +45,15 @@
 	
 	#hide_menu {
 		position: absolute;
-		top: 0px;
+		top: 30px;
 		width: 100%;
+		transition: 0.6s;
+		background-color: white;
 	}
 	/* header(로그인, 회원가입, 마이페이지, 고객센터) */
 	#header_line1 {
+		position: fixed;
+		z-index: 500;
 		height: 30px;
 		width: 100%;
 		background-color: #2C3E50 !important;
@@ -133,6 +137,7 @@
 		margin: 0px auto;
 		box-sizing: border-box;
 		transition: 0.1s;
+		background-color: white;
 	}
 	#header_line2 img {
 		display: inline-block;
@@ -184,14 +189,14 @@
 	/* 네비게이션 메뉴바 */
 	#header_line3 {
 		width: 100%;
-		min-width: 1900px;
+		min-width: 1400px;
 		height: 49px;
 		background-color: #18BC9C;
 		box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 
 		            0 4px 20px 0 rgba(0, 0, 0, 0.19);
 		box-sizing: border-box; /* 크기 고정 */
 		position: relative;
-		margin-top: 140px;
+		margin-top: 35px;
 		transition: 0.6s;
 		padding: 0px 35px;
 	}
@@ -201,9 +206,6 @@
 		height: 49px;
 		position: relative;
 	}
-	
-	
-	
 	
     #header_line3_ul > li:hover {
 		background-color: #2C3E50;
@@ -228,7 +230,8 @@
 		text-align: center;
 	}
 	#header_line3_in {
-		width: 100%;
+		width: 1400px;
+		margin: 0 auto;
 		box-sizing: border-box;
 	}
 	.header_line3_dropdown {
@@ -251,7 +254,7 @@
 	
 	
 	#rightmenu {
-		float: right;
+		float: left;
 	}
 	#leftmenu {
 		float: left;
@@ -279,6 +282,7 @@
 	}
 	
 	#myBtn {
+		border-top: 2px dashed #F39C12;
 		width: 200px;
 		height: 200px;
 		background-color: #2C3E50;
@@ -301,6 +305,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#myBtn").css("opacity", "0");
+		$("#leftmenu").css("display", "block");
 	});
 	$(window).scroll(function(){
 		if($(document).scrollTop() > 200) {
@@ -326,42 +331,42 @@
 			</div>
 		</div>
 		<div id="header_wrap">
-			<div id="hide_menu">
-				<div id="header_line1">
-					<div id="header_line1_in">
-						<ul id="header_line1_ul">
-							<c:choose>
-								<c:when test="${empty sessionScope.loginUser}">
-									<li><a href="<%=path%>/login.bizpoll" id="login_btn">로그인</a></li>
-									<li><a href="<%=path%>/constract.bizpoll">회원가입</a></li>
-								</c:when>
-								<c:otherwise>
-								    <li id="loginInfo">
-								    	<span>${sessionScope.loginUser.name}</span>
-								    	(${sessionScope.loginUser.id})
-								    </li>
-									<li><a href="<%=path%>/loginOut.bizpoll">로그아웃</a></li>	
-								</c:otherwise>
-							</c:choose>
-							<li>
-								<a id="header_line1_mypage"  href="">마이페이지▼</a>
-								<div id="header_line1_dropdown">
-									<a href="#">주문/배송조회</a>
-									<a href="#">장바구니</a>
-									<a href="#">위시리스트</a>
-									<c:choose>
-										<c:when test="${!empty sessionScope.loginUser}">
-											<a href="<%=path%>/memberPw.bizpoll">비밀번호 수정</a>
-											<a href="<%=path%>/memberUpdate.bizpoll">내정보 수정</a>
-											<a href="<%=path%>/memberDelete.bizpoll">회원 탈퇴</a>
-										</c:when>
-									</c:choose>
-								</div>
-							</li>
-							<li><a href="">고객센터</a></li>
-						</ul>
-					</div>
+			<div id="header_line1">
+				<div id="header_line1_in">
+					<ul id="header_line1_ul">
+						<c:choose>
+							<c:when test="${empty sessionScope.loginUser}">
+								<li><a href="<%=path%>/login.bizpoll" id="login_btn">로그인</a></li>
+								<li><a href="<%=path%>/constract.bizpoll">회원가입</a></li>
+							</c:when>
+							<c:otherwise>
+							    <li id="loginInfo">
+							    	<span>${sessionScope.loginUser.name}</span>
+							    	(${sessionScope.loginUser.id})
+							    </li>
+								<li><a href="<%=path%>/loginOut.bizpoll">로그아웃</a></li>	
+							</c:otherwise>
+						</c:choose>
+						<li>
+							<a id="header_line1_mypage"  href="">마이페이지▼</a>
+							<div id="header_line1_dropdown">
+								<a href="#">주문/배송조회</a>
+								<a href="#">장바구니</a>
+								<a href="#">위시리스트</a>
+								<c:choose>
+									<c:when test="${!empty sessionScope.loginUser}">
+										<a href="<%=path%>/memberPw.bizpoll">비밀번호 수정</a>
+										<a href="<%=path%>/memberUpdate.bizpoll">내정보 수정</a>
+										<a href="<%=path%>/memberDelete.bizpoll">회원 탈퇴</a>
+									</c:when>
+								</c:choose>
+							</div>
+						</li>
+						<li><a href="">고객센터</a></li>
+					</ul>
 				</div>
+			</div>
+			<div id="hide_menu">
 				<div id="header_line2">
 					<a href="<%=path%>/index.bizpoll">
 						<img id="header_logo" src="<%=path%>/img/FCRyan_Logo.png" alt="로고이미지">
@@ -374,35 +379,36 @@
 					</div>
 					
 				</div>
-			</div>
-			<div id="header_line3">
-				<div id="header_line3_in">
-					<div id="leftmenu">
-						<span id="small_logo"><a href="<%=path%>/index.bizpoll">FCRyan</a></span>
-						<div class="header_line2_wrap_search" id="small_wrap_search">
-							<div class="header_line2_search">
-								<input class="search_keyword" id="small_search_keyword" type="text" placeholder="검색어를 입력하세요.">
-								<input class="search_btn" id="small_search_btn" type="submit" value="검색">
+				
+				<div id="header_line3">
+					<div id="header_line3_in">
+						<div id="rightmenu">
+							<ul id="header_line3_ul">
+								<li><a href="#">FC Info.</a></li>
+								<li><a href="#">프리미어리그</a></li>
+								<li><a href="#">라리가</a>
+									<div class="header_line3_dropdown">
+										<a href="">FC바르셀로나</a>
+										<a href="">레알마드리드</a>
+										<a href="">AT마드리드</a>
+										<a href="">세비야 FC</a>
+										<a href="">RCD 에스파뇰</a>
+									</div>
+								</li>
+								<li><a href="#">세리에 A</a></li>
+								<li><a href="#">분데스리가</a></li>
+								<li><a href="boardList.bizpoll">게시판</a></li>
+							</ul>	
+						</div>
+						<div id="leftmenu">
+							<span id="small_logo"><a href="<%=path%>/index.bizpoll">FCRyan</a></span>
+							<div class="header_line2_wrap_search" id="small_wrap_search">
+								<div class="header_line2_search">
+									<input class="search_keyword" id="small_search_keyword" type="text" placeholder="검색어를 입력하세요.">
+									<input class="search_btn" id="small_search_btn" type="submit" value="검색">
+								</div>
 							</div>
 						</div>
-					</div>
-					<div id="rightmenu">
-						<ul id="header_line3_ul">
-							<li><a href="#">FC Info.</a></li>
-							<li><a href="#">프리미어리그</a></li>
-							<li><a href="#">라리가</a>
-								<div class="header_line3_dropdown">
-									<a href="">FC바르셀로나</a>
-									<a href="">레알마드리드</a>
-									<a href="">AT마드리드</a>
-									<a href="">세비야 FC</a>
-									<a href="">RCD 에스파뇰</a>
-								</div>
-							</li>
-							<li><a href="#">세리에 A</a></li>
-							<li><a href="#">분데스리가</a></li>
-							<li><a href="boardList.bizpoll">게시판</a></li>
-						</ul>	
 					</div>
 				</div>
 			</div>
@@ -417,14 +423,17 @@
 		
 		function scrollFunction() {
 			if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-				$("#header_line2").css("display", "none");
-				$("#header_line3").css("margin-top", "30px");
+				$("#hide_menu").css("top", "-85px");
+				$("#rightmenu").css("float", "right");
+				$("#leftmenu").css("display", "block");
 				$("#leftmenu").css("opacity", "1");
+				$("#header_line1").css("box-shadow", "none");
 			} else {
-				$("#header_line2").css("display", "block");
-				$("#header_line3").css("margin-top", "140px");
+				$("#hide_menu").css("top", "30px");
+				$("#rightmenu").css("float", "left");
+				$("#leftmenu").css("display", "none");
 				$("#leftmenu").css("opacity", "0");
-				
+				$("#header_line1").css("box-shadow", "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)");
 			}
 		}
 	});

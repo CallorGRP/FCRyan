@@ -81,8 +81,16 @@
 		width: 602px;
 		box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
 	}
+	.reply_insert {
+		width: 735px!important;
+	}
+	#replyInsert {
+		width: 730px!important;
+	}
 	
-	
+	.reply_line2 {
+		margin-top: 10px;
+	}
 	.reply_writer {
 		color: #2C3E50;
 		font-weight: bold;
@@ -95,7 +103,6 @@
 		color: #2C3E50;
 		font-size: 12px;
 	}
-	
 	.replylist_textarea {
 		padding: 5px;
 		width: 600px;
@@ -108,7 +115,7 @@
 	}
 	
 	.reply_login {
-		border-top: 1px solid black;
+		border-top: 2px dashed black;
 		padding-left: 10px;
 	}
 	
@@ -304,11 +311,104 @@
 		display: none;
 		margin-top: 8px;
 	}
+	.btn_like {
+	  position: relative;
+	  display: inline-block;
+	  width: 44px;
+	  height: 44px;
+	  border: 1px solid #e8e8e8;
+	  border-radius: 44px;
+	  font-family: notokr-bold,sans-serif;
+	  font-size: 14px;
+	  line-height: 16px;
+	  background-color: #fff;
+	  color: #DD5D54;
+	  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.03);
+	  transition: border .2s ease-out,box-shadow .1s ease-out,background-color .4s ease-out;
+	  cursor: pointer;
+	}
+	
+	.btn_like:hover {
+	  border: 1px solid rgba(228,89,89,0.3);
+	  background-color: rgba(228,89,89,0.02);
+	  box-shadow: 0 2px 4px 0 rgba(228,89,89,0.2);
+	}
+	
+	.btn_unlike .img_emoti {
+	    background-position: -30px -120px;
+	}
+	
+	.img_emoti {
+	    display: inline-block;
+	    overflow: hidden;
+	    font-size: 0;
+	    line-height: 0;
+	    background: url(https://mk.kakaocdn.net/dn/emoticon/static/images/webstore/img_emoti.png?v=20180410) no-repeat;
+	    text-indent: -9999px;
+	    vertical-align: top;
+	    width: 20px;
+	    height: 17px;
+	    margin-top: 1px;
+	    background-position: 0px -120px;
+	    text-indent: 0;
+	}
+	
+	.btn_like .ani_heart_m {
+	    margin: -63px 0 0 -63px;
+	}
+	
+	.ani_heart_m {
+	    display: block;
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    width: 125px;
+	    height: 125px;
+	    margin: -63px 0 0 -63px;
+	    pointer-events: none;
+	}
+	
+	.ani_heart_m.hi {
+	    background-image: url(https://mk.kakaocdn.net/dn/emoticon/static/images/webstore/retina/zzim_on_m.png);
+	    -webkit-background-size: 9000px 125px;
+	    background-size: 9000px 125px;
+	    animation: on_m 1.06s steps(72);
+	}
+	
+	.ani_heart_m.bye {
+	    background-image: url(https://mk.kakaocdn.net/dn/emoticon/static/images/webstore/retina/zzim_off_m.png);
+	    -webkit-background-size: 8250px 125px;
+	    background-size: 8250px 125px;
+	    animation: off_m 1.06s steps(66);
+	}
+	
+	@keyframes on_m {
+	  from { background-position: 0 }
+	  to { background-position: -9000px }
+	}
+	
+	@keyframes off_m {
+	  from { background-position: 0 }
+	  to { background-position: -8250px }
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
 		/* 문서가 준비되면 댓글 목록을 조회하는 AJAX 실행 */
 		comment_list();
+		
+		$("#btn_good").click(function(){
+	    	if($(this).hasClass('btn_unlike')){
+			    $(this).removeClass('btn_unlike');
+			    $('.ani_heart_m').removeClass('hi');
+			    $('.ani_heart_m').addClass('bye');
+	    	}
+	  		else{
+			    $(this).addClass('btn_unlike');
+			    $('.ani_heart_m').addClass('hi');
+			    $('.ani_heart_m').removeClass('bye');
+	    	}
+		});
 	});
 	
 	function comment_list() {
@@ -322,7 +422,9 @@
 		});
 	}
 	$(document).on("click", "#reply_btn", function(){
+		oEditors.getById["replyInsert"].exec("UPDATE_CONTENTS_FIELD", []);
 		var content = $("#replyInsert").val();
+		
 		if(content == "") {
 			$("#replyInsert").focus();			
 			$(".error").css("display", "block");
@@ -330,7 +432,7 @@
 		} else {
 			var bno = ${boardview.bno};
 			$("#re_bno").val(bno);
-			
+		
 			$.ajax({
 				url: "replyInsert.bizpoll",
 				type: "POST",
@@ -343,7 +445,7 @@
 				error: function() {
 					alert("System Error!!!");
 				}
-			});	
+			});
 		}
 	});
 	$(document).on("click", ".reply_del", function(){
@@ -360,9 +462,6 @@
 				alert("System Error!!!");
 			}
 		});
-		
-		
-		
 	});
 	
 	$(document).on("click", "#answer_btn", function(){
@@ -397,6 +496,11 @@
 	$(document).on("click", "#yes_btn", function(){
 		location.href="boardDelete.bizpoll?bno=${boardview.bno}";
 	});
+	
+	
+	
+	
+	
 </script>
 </head>
 <body>  
@@ -434,7 +538,13 @@
 																			   (<fmt:formatNumber type="number" pattern="0.0" value="${boardview.filesize / 1024}"></fmt:formatNumber> kb)</a></div>
 							</c:if>
 						</td>
-						<td style="border-left: 0px; border-right: 0px; text-align: center;"><i class="fa fa-eye"></i> ${boardview.viewcnt} <i class="fa fa-heart"></i> ${boardview.goodcnt}</td>
+						<td style="border-left: 0px; border-right: 0px; text-align: center;">
+							<i class="fa fa-eye"></i> ${boardview.viewcnt} 
+							<button type="button" class="btn_like" id="btn_good">
+								<span class="img_emoti">좋아요</span>
+								<span class="ani_heart_m"></span>
+							</button> ${boardview.goodcnt}
+						</td>
 					</tr>
 					<tr>
 						<td id="detailContent" colspan="4" style="border-left: 0px; border-right: 0px;">
@@ -459,7 +569,6 @@
 	</div>
 
 	<div id="reply_wrap">
-		
 		<div id="commentList">
 		</div>
 	</div>
