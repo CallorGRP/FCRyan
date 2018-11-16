@@ -129,6 +129,13 @@ h3 {
     animation-duration: 1.2s;
     animation-iteration-count: infinite;
 }
+.replyCnt_Color {
+	background-color: #2C3E50;
+	font-size: 11px;
+	color: white;
+	border-radius: 25px;
+	padding: 2px 5px;
+}
 
 @keyframes twinkle {
     0%   {opacity: 0;}
@@ -176,6 +183,17 @@ h3 {
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var code = $("#code").val();
+		if(code == "new") {
+			$("#orderNew").css("color", "#E71D36").css("font-weight", "bold").css("text-decoration", "underline");
+		} else if(code == "good") {
+			$("#orderGood").css("color", "#E71D36").css("font-weight", "bold").css("text-decoration", "underline");
+		} else if(code == "reply") {
+			$("#orderReply").css("color", "#E71D36").css("font-weight", "bold").css("text-decoration", "underline");
+		} else if(code == "cnt") {
+			$("#orderCnt").css("color", "#E71D36").css("font-weight", "bold").css("text-decoration", "underline");
+		} 
+		
 		// 게시글 등록 버튼 클릭시 이벤트 처리
 		$("#boardAdd").on("click", function() {
 			location.href = "boardInsert.bizpoll";
@@ -206,10 +224,11 @@ h3 {
 					<h3 class="box-title">질문 게시판</h3>
 					<div>
 						<div id="order_board">
-							<span><a href="boardList.bizpoll?key=new">최신순</a></span>
-							<span><a href="boardList.bizpoll?key=good">추천순</a></span>
-							<span><a href="boardList.bizpoll?key=reply">댓글순</a></span>
-							<span><a href="boardList.bizpoll?key=cnt">조회순</a></span>
+							<input type="hidden" value="${code}" id="code">
+							<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=new" id="orderNew">최신순</a></span>
+							<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=good" id="orderGood">추천순</a></span>
+							<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=reply" id="orderReply">댓글순</a></span>
+							<span><a href="boardList.bizpoll?flag=${flag}&keyword=${keyword}&key=cnt" id="orderCnt">조회순</a></span>
 						</div>						
 						<button class="btn btn-primary" id="boardAdd">게시글 등록</button>
 					</div>
@@ -240,7 +259,7 @@ h3 {
 								${bDto.title}
 								
 								<c:if test="${bDto.replycnt > 0}">
-									[${bDto.replycnt}]
+									<span class="replyCnt_Color">${bDto.replycnt}</span>
 								</c:if>
 								
 								<c:if test="${today2 == regdate2}">

@@ -120,3 +120,38 @@ SELECT * FROM fcryanboard
 ORDER BY regdate DESC;      
 
 COMMIT;
+
+-- fcryan 댓글
+DROP SEQUENCE seq_fcryanreply_rno;
+CREATE SEQUENCE seq_fcryanreply_rno
+INCREMENT BY 1
+START WITH 1
+NOCYCLE
+MINVALUE 1
+NOMAXVALUE;
+
+DROP TABLE fcryanreply;
+CREATE TABLE fcryanreply(
+    rno NUMBER NOT NULL PRIMARY KEY,
+    content VARCHAR2(2000) NOT NULL,
+    writer VARCHAR2(30) NOT NULL,
+    regdate DATE DEFAULT SYSDATE,
+    bno NUMBER NOT NULL
+);
+ALTER TABLE fcryanreply ADD CONSTRAINT fcryanreply_fk_bno
+    FOREIGN KEY (bno) REFERENCES fcryanboard(bno);
+COMMIT;
+
+
+DELETE TABLE fcryanreply;
+INSERT INTO fcryanreply(rno, content, writer, bno)
+VALUES(seq_fcryanreply_rno.NEXTVAL, '테스트입니다. 1', 'sentilemon02', 343);
+INSERT INTO fcryanreply(rno, content, writer, bno)
+VALUES(seq_fcryanreply_rno.NEXTVAL, '테스트입니다. 2', 'Tester1', 343);
+INSERT INTO fcryanreply(rno, content, writer, bno)
+VALUES(seq_fcryanreply_rno.NEXTVAL, '테스트입니다. 3', 'sentilemon02', 343);
+INSERT INTO fcryanreply(rno, content, writer, bno)
+VALUES(seq_fcryanreply_rno.NEXTVAL, '테스트입니다. 4', 'sentilemon02', 343);
+INSERT INTO fcryanreply(rno, content, writer, bno)
+VALUES(seq_fcryanreply_rno.NEXTVAL, '테스트입니다. 5', 'Tester3', 343);
+COMMIT;

@@ -51,8 +51,6 @@ public class IndexAction implements Action {
 		request.setAttribute("newlist", newList);
 		
 
-		
-		
 		// 어떤 View단으로 이동하는지 설정
 		ActionForward forward = new ActionForward(); // ActionForward 객체 생성
 		// ActionForward 클래스에 setPath() 메서드를 호출
@@ -63,7 +61,6 @@ public class IndexAction implements Action {
 		forward.setRedirect(false); // forward 방식을 사용
 		return forward;
 	}
-
 }
 
 

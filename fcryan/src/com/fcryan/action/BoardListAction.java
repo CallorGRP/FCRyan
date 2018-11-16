@@ -33,6 +33,7 @@ public class BoardListAction implements Action{
 		if(request.getParameter("key") != null) {
 			code = request.getParameter("key");
 		}
+		System.out.println("===> code" + code);
 		criDto.setCode(code);
 		request.setAttribute("code", code);
 		

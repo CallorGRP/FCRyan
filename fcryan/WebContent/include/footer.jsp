@@ -26,16 +26,38 @@
 		font-size: 38px;
 		font-family: 'Fjalla One', sans-serif;
 		cursor: pointer;
+		text-shadow: 0 0 6px #18BC9C;
 	}
 	#footer_name:hover {
 		color: #18BC9C;
 	}
+	#footer_name:before {
+	  content: '';
+	  position: absolute;
+	  bottom: 0;
+	  left: 0;
+	  display: inline-block;
+	  width: 104px;
+	  height: 1px;
+	  background: #000;
+	  transform: scale(0);
+	  transition: all 0.2s;
+	}
+	
+	#footer_name:hover:before {
+	  background: #01c9ca;
+	  transform: scale(1);
+	}
+	
+	
+	
 	#footer_info > div > p > a:hover {
 		color: #18BC9C;
 	}
 	#footer_info > div p {
 		vertical-align: middle;
 		display: inline-block;
+		margin: 10px 0 0 0;
 	}
 	#footer_info > div p > a {
 		display: inline-block;
@@ -54,6 +76,7 @@
 	#footer_info > address {
 		display: block;
 		position: relative;
+		margin-top: 10px;
 	}
 	#footer_info > address > span {
 		display: inline-block;
