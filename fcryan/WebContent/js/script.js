@@ -2,7 +2,7 @@
 
 const ryan = document.querySelector('#ryan');
 const face = document.querySelectorAll('.ears, .eyes, .muzzle');
-const email = document.querySelector('input[type="text"]');
+const email = document.querySelector('#input_id');
 const password = document.querySelector('input[type="password"]');
 const fauxInput = document.createElement('div');
 const span = document.createElement('span');
@@ -54,6 +54,7 @@ function copyStyles(el) {
 }
 
 function look(event) {
+	console.log("test2");
     const el = event.target;
     const text = el.value.substr(0, el.selectionStart);
 
@@ -79,7 +80,7 @@ function lookAway(event) {
     const distInput = ryanRect.top + ryanRect.height/2 - inputRect.top;
 
     ryan.classList.add( 'look-away', distInput < 0 ? 'up' : 'down' );
-
+    
     clearTimeout(timer);
     timer = setTimeout( () => {
         ryan.classList.add( 'playing' );

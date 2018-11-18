@@ -28,7 +28,6 @@ input {
     border-radius: 5px;
     outline: 0;
     padding: 10px 15px;
-    font-family: 'Nanum Gothic', serif;
 }
 
 .input_login {
@@ -36,6 +35,7 @@ input {
 	border: 2.5px solid #18BC9C;
 	margin-bottom: 15px;
 	color: black;
+	font: 400 15px Roboto,RobotoDraft,Helvetica,Arial,sans-serif!important;
 }
 
 
