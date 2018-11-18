@@ -13,17 +13,17 @@ CREATE TABLE member(
 );
 
 INSERT INTO member(id, pw, name, phone, email, zipcode, addr1, addr2)
-VALUES('ccw1104', 'ccw12345', 'ÃÖÃ¶¿õ', '01026850201', 'sentilemon02@gmail.com', '506766', '±¤ÁÖ±¤¿ª½Ã ±¤»ê±¸ ¿î³²µ¿', 'ÁÖ°ø¾ÆÆÄÆ® 000µ¿ 0000È£');
+VALUES('ccw1104', 'ccw12345', 'ìµœì² ì›…', '01026850201', 'sentilemon02@gmail.com', '506766', 'ê´‘ì£¼ê´‘ì—­ì‹œ ê´‘ì‚°êµ¬ ìš´ë‚¨ë™', 'ì£¼ê³µì•„íŒŒíŠ¸ 000ë™ 0000í˜¸');
 
 COMMIT;
 
 SELECT * FROM member;
         
         
--- FCRyan »óÇ°Å×ÀÌºí ÇÏ³ª·Î ÇÕÄ¡±â
+-- FCRyan ìƒí’ˆí…Œì´ë¸” í•˜ë‚˜ë¡œ í•©ì¹˜ê¸°
 DROP SEQUENCE seq_fcproview;
 CREATE SEQUENCE seq_fcproview
-START WITH 1 -- ½ÃÀÛ°ª
+START WITH 1 -- ì‹œì‘ê°’
 INCREMENT BY 1;
 
 DROP TABLE fcproduct;
@@ -41,42 +41,42 @@ CREATE TABLE fcproduct(
     p_indate DATE DEFAULT SYSDATE
 );
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, 'ÇÔºÎ¸£Å©SV', 'ºĞµ¥½º¸®°¡', 'µ¶ÀÏ', 'µ¶ÀÏ ÇÔºÎ¸£Å©', 'ÆúÅ©½ºÆÄ¸£Å©½´Å¸µğ¿Â', 'ÇÏ³×½º º¼ÇÁ', 3000, 20, '¶óÀÌ¾ğ1.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'í•¨ë¶€ë¥´í¬SV', 'ë¶„ë°ìŠ¤ë¦¬ê°€', 'ë…ì¼', 'ë…ì¼ í•¨ë¶€ë¥´í¬', 'í´í¬ìŠ¤íŒŒë¥´í¬ìŠˆíƒ€ë””ì˜¨', 'í•˜ë„¤ìŠ¤ ë³¼í”„', 3000, 20, 'ë¼ì´ì–¸1.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, '¾Ö½ºÅÏ ºô¶ó FC', 'ÇÁ¸®¹Ì¾î¸®±×', 'À×±Û·£µå', 'À×±Û·£µå ¹ö¹Ö¾ö', 'ºô¶ó ÆÄÅ©', 'µò ½º¹Ì½º', 5000, 20, '¶óÀÌ¾ğ2.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'ì• ìŠ¤í„´ ë¹Œë¼ FC', 'í”„ë¦¬ë¯¸ì–´ë¦¬ê·¸', 'ì‰ê¸€ëœë“œ', 'ì‰ê¸€ëœë“œ ë²„ë°ì—„', 'ë¹Œë¼ íŒŒí¬', 'ë”˜ ìŠ¤ë¯¸ìŠ¤', 5000, 20, 'ë¼ì´ì–¸2.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, '½º¿ÏÁö ½ÃÆ¼ AFC', 'ÇÁ¸®¹Ì¾î¸®±×', '¿µ±¹', '¿şÀÏ½º ½º¿ÏÁö', '¸®¹öÆ¼ ½ºÅ¸µğ¿ò', '±×·¹ÀÌ¾ö Æ÷ÅÍ', 2000, 50, '¶óÀÌ¾ğ3.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'ìŠ¤ì™„ì§€ ì‹œí‹° AFC', 'í”„ë¦¬ë¯¸ì–´ë¦¬ê·¸', 'ì˜êµ­', 'ì›¨ì¼ìŠ¤ ìŠ¤ì™„ì§€', 'ë¦¬ë²„í‹° ìŠ¤íƒ€ë””ì›€', 'ê·¸ë ˆì´ì—„ í¬í„°', 2000, 50, 'ë¼ì´ì–¸3.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, 'FC ÀÎÅÍ ¹Ğ¶õ', '¼¼¸®¿¡ A', 'ÀÌÅ»¸®¾Æ', 'ÀÌÅ»¸®¾Æ ¹Ğ¶ó³ë', 'ÁÖ¼¼Æä ¸Ş¾ÆÂ÷ ½ºÅ¸µğ¿ò', '·çÄ¡¾Æ³ë ½ºÆÈ·¹Æ¼', 8000, 120, '¶óÀÌ¾ğ4.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'FC ì¸í„° ë°€ë€', 'ì„¸ë¦¬ì— A', 'ì´íƒˆë¦¬ì•„', 'ì´íƒˆë¦¬ì•„ ë°€ë¼ë…¸', 'ì£¼ì„¸í˜ ë©”ì•„ì°¨ ìŠ¤íƒ€ë””ì›€', 'ë£¨ì¹˜ì•„ë…¸ ìŠ¤íŒ”ë ˆí‹°', 8000, 120, 'ë¼ì´ì–¸4.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, '¹ÙÀÌ¿¤ 04 ·¹¹öÄíÁ¨', 'ºĞµ¥½º¸®°¡', 'µ¶ÀÏ', 'µ¶ÀÏ ·¹¹öÄíÁ¨', '¹ÙÀÌ ¾Æ·¹³ª', 'ÇÏÀÌÄÚ Çì¸¦¸®È÷', 3200, 15, '¶óÀÌ¾ğ5.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'ë°”ì´ì—˜ 04 ë ˆë²„ì¿ ì  ', 'ë¶„ë°ìŠ¤ë¦¬ê°€', 'ë…ì¼', 'ë…ì¼ ë ˆë²„ì¿ ì  ', 'ë°”ì´ ì•„ë ˆë‚˜', 'í•˜ì´ì½” í—¤ë¥¼ë¦¬íˆ', 3200, 15, 'ë¼ì´ì–¸5.jpg');
 commit;
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, 'AC ¹Ğ¶õ', '¼¼¸®¿¡ A', 'ÀÌÅ»¸®¾Æ', 'ÀÌÅ»¸®¾Æ ¹Ğ¶ó³ë', '»ê ½Ã·Î ½ºÅ¸µğ¿ò', 'Á¨³ª·Î °¡Åõ¼Ò', 3200, 15, '¶óÀÌ¾ğ6.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'AC ë°€ë€', 'ì„¸ë¦¬ì— A', 'ì´íƒˆë¦¬ì•„', 'ì´íƒˆë¦¬ì•„ ë°€ë¼ë…¸', 'ì‚° ì‹œë¡œ ìŠ¤íƒ€ë””ì›€', 'ì  ë‚˜ë¡œ ê°€íˆ¬ì†Œ', 3200, 15, 'ë¼ì´ì–¸6.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, '¸ÇÃ¼½ºÅÍ À¯³ªÀÌÆ¼µå FC', 'ÇÁ¸®¹Ì¾î¸®±×', 'À×±Û·£µå', 'À×±Û·£µå ¸ÇÃ¼½ºÅÍ', '¿Ãµå Æ®·¡Æ÷µå', 'Á¶¼¼ ¹«¸®´º', 12000, 350, '¶óÀÌ¾ğ8.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'ë§¨ì²´ìŠ¤í„° ìœ ë‚˜ì´í‹°ë“œ FC', 'í”„ë¦¬ë¯¸ì–´ë¦¬ê·¸', 'ì‰ê¸€ëœë“œ', 'ì‰ê¸€ëœë“œ ë§¨ì²´ìŠ¤í„°', 'ì˜¬ë“œ íŠ¸ë˜í¬ë“œ', 'ì¡°ì„¸ ë¬´ë¦¬ë‰´', 12000, 350, 'ë¼ì´ì–¸8.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, 'FC ¹Ù¸£¼¿·Î³ª', 'ÇÁ¸®¸Ş¶ó¸®±×', '½ºÆäÀÎ', '½ºÆäÀÎ ¹Ù¸£¼¿·Î³ª', 'Ä¯ÇÁ ´©', '¿¡¸£³×½ºÅä ¹ßº£¸£µ¥', 15000, 550, '¶óÀÌ¾ğ9.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'FC ë°”ë¥´ì…€ë¡œë‚˜', 'í”„ë¦¬ë©”ë¼ë¦¬ê·¸', 'ìŠ¤í˜ì¸', 'ìŠ¤í˜ì¸ ë°”ë¥´ì…€ë¡œë‚˜', 'ìº„í”„ ëˆ„', 'ì—ë¥´ë„¤ìŠ¤í†  ë°œë² ë¥´ë°', 15000, 550, 'ë¼ì´ì–¸9.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, '¾Æ½º³Î FC', 'ÇÁ¸®¹Ì¾î¸®±×', 'À×±Û·£µå', 'À×±Û·£µå ·±´ø', '¿¡¹Ì·¹ÀÌÆ® ½ºÅ¸µğ¿ò', '¿ì³ªÀÌ ¿¡¸Ş¸®', 12000, 450, '¶óÀÌ¾ğ10.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'ì•„ìŠ¤ë„ FC', 'í”„ë¦¬ë¯¸ì–´ë¦¬ê·¸', 'ì‰ê¸€ëœë“œ', 'ì‰ê¸€ëœë“œ ëŸ°ë˜', 'ì—ë¯¸ë ˆì´íŠ¸ ìŠ¤íƒ€ë””ì›€', 'ìš°ë‚˜ì´ ì—ë©”ë¦¬', 12000, 450, 'ë¼ì´ì–¸10.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, '·¹¾Ë ¸¶µå¸®µå', 'ÇÁ¸®¸Ş¶ó¸®±×', '½ºÆäÀÎ', '½ºÆäÀÎ ¸¶µå¸®µå', '»êÆ¼¾Æ°í º£¸£³ªº£¿ì', '»êÆ¼¾Æ°í ¼Ö¶ó¸®', 10500, 470, '¶óÀÌ¾ğ12.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'ë ˆì•Œ ë§ˆë“œë¦¬ë“œ', 'í”„ë¦¬ë©”ë¼ë¦¬ê·¸', 'ìŠ¤í˜ì¸', 'ìŠ¤í˜ì¸ ë§ˆë“œë¦¬ë“œ', 'ì‚°í‹°ì•„ê³  ë² ë¥´ë‚˜ë² ìš°', 'ì‚°í‹°ì•„ê³  ì†”ë¼ë¦¬', 10500, 470, 'ë¼ì´ì–¸12.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, 'FC ¹ÙÀÌ¿¡¸¥ ¹ÀÇî', 'ºĞµ¥½º¸®°¡', 'µ¶ÀÏ', 'µ¶ÀÏ ’yÇî', '¾Ë¸®¾ÈÃ÷ ¾Æ·¹³ª', '´ÏÄÚ ÄÚ¹ÙÄ¡', 16500, 542, '¶óÀÌ¾ğ13.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'FC ë°”ì´ì—ë¥¸ ë®Œí—¨', 'ë¶„ë°ìŠ¤ë¦¬ê°€', 'ë…ì¼', 'ë…ì¼ Â’yí—¨', 'ì•Œë¦¬ì•ˆì¸  ì•„ë ˆë‚˜', 'ë‹ˆì½” ì½”ë°”ì¹˜', 16500, 542, 'ë¼ì´ì–¸13.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, '´ºÄ³½½ À¯³ªÀÌÆ¼µå FC', 'ÇÁ¸®¹Ì¾î¸®±×', 'À×±Û·£µå', 'À×±Û·£µå ´ºÄ³½½¾îÆùÅ¸ÀÎ', '¼¼ÀÎÆ®Á¦ÀÓ½º ÆÄÅ©', '¶óÆÄ¿¤ º£´ÏÅ×Áî', 11243, 342, '¶óÀÌ¾ğ15.png');
+VALUES(seq_fcproview.NEXTVAL, 'ë‰´ìºìŠ¬ ìœ ë‚˜ì´í‹°ë“œ FC', 'í”„ë¦¬ë¯¸ì–´ë¦¬ê·¸', 'ì‰ê¸€ëœë“œ', 'ì‰ê¸€ëœë“œ ë‰´ìºìŠ¬ì–´í°íƒ€ì¸', 'ì„¸ì¸íŠ¸ì œì„ìŠ¤ íŒŒí¬', 'ë¼íŒŒì—˜ ë² ë‹ˆí…Œì¦ˆ', 11243, 342, 'ë¼ì´ì–¸15.png');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, 'SV º£¸£´õ ºê·¹¸à', 'ºĞµ¥½º¸®°¡', 'µ¶ÀÏ', 'µ¶ÀÏ ºê·¹¸Ç', 'º£Àú½ºÅ¸µğ¿Â', 'ÇÃ·Î¸®¾È ÄÚÆçÆ®', 5300, 102, '¶óÀÌ¾ğ16.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'SV ë² ë¥´ë” ë¸Œë ˆë©˜', 'ë¶„ë°ìŠ¤ë¦¬ê°€', 'ë…ì¼', 'ë…ì¼ ë¸Œë ˆë§¨', 'ë² ì €ìŠ¤íƒ€ë””ì˜¨', 'í”Œë¡œë¦¬ì•ˆ ì½”í íŠ¸', 5300, 102, 'ë¼ì´ì–¸16.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, 'À¯º¥Åõ½º FC', '¼¼¸®¿¡ A', 'ÀÌÅ»¸®¾Æ', 'ÀÌÅ»¸®¾Æ Åä¸®³ë', '¾Ë¸®¾ÈÃ÷ ½ºÅ¸µğ¿ò', '¸¶½Ã¹Ğ¸®¾Æ³ë ¾Ë·¹±×¸®', 17300, 560, '¶óÀÌ¾ğ17.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'ìœ ë²¤íˆ¬ìŠ¤ FC', 'ì„¸ë¦¬ì— A', 'ì´íƒˆë¦¬ì•„', 'ì´íƒˆë¦¬ì•„ í† ë¦¬ë…¸', 'ì•Œë¦¬ì•ˆì¸  ìŠ¤íƒ€ë””ì›€', 'ë§ˆì‹œë°€ë¦¬ì•„ë…¸ ì•Œë ˆê·¸ë¦¬', 17300, 560, 'ë¼ì´ì–¸17.jpg');
 INSERT INTO fcproduct (p_code, p_name, p_club, p_nation, p_local, p_statidum, p_coach, p_price, p_good, p_img)
-VALUES(seq_fcproview.NEXTVAL, 'Ã¿½Ã FC', 'ÇÁ¸®¹Ì¾ö¸®±×', 'À×±Û·£µå', 'À×±Û·£µå ·±´ø', '½ºÅÛÆ÷µå ºê¸´Áö', '¸¶¿ì¸®Ä¡¿À »ç¸®', 15300, 423, '¶óÀÌ¾ğ18.jpg');
+VALUES(seq_fcproview.NEXTVAL, 'ì²¼ì‹œ FC', 'í”„ë¦¬ë¯¸ì—„ë¦¬ê·¸', 'ì‰ê¸€ëœë“œ', 'ì‰ê¸€ëœë“œ ëŸ°ë˜', 'ìŠ¤í…œí¬ë“œ ë¸Œë¦¿ì§€', 'ë§ˆìš°ë¦¬ì¹˜ì˜¤ ì‚¬ë¦¬', 15300, 423, 'ë¼ì´ì–¸18.jpg');
 COMMIT;
         
 SELECT * FROM fcproduct;
         
         
--- fcryan °Ô½ÃÆÇ
+-- fcryan ê²Œì‹œíŒ
 DROP SEQUENCE seq_fcryanboard;
 CREATE SEQUENCE seq_fcryanboard
 START WITH 1
@@ -97,23 +97,23 @@ CREATE TABLE fcryanboard(
     filesize NUMBER
 );
 
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'È£³¯µÎ ÀÌÀû?', 'ÁøÂ¥ È£³¯µÎ ÀÌÀûÇÕ´Ï±î?', 'ÀÌÀû³¯µÎ');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'È£³¯µÎ ÀÌÀûÇÑ´Ù°í???', '¸¶µå¸®µå¿¡¼­ ¾îµğ·Î °¡´Âµ¥?', '»ïÀû³¯µÎ');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'À¯º¥Åõ½º ¼¼¸®¿¡·Î °£´Ù', '³ª¿¡ È£³¯µÎ À¯º¥Åõ½º·Î ¶°³­´Ù', '»çÀû³¯µÎ');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '¸Ş½ÃÀÇ ½Ã´ë°¡ ¿À´Â°¡', 'È£³¯µÎ ÀÌÀûÇÏ¸é ¸Ş½Ã°¡ ¶ó¸®°¡ ¸Ô°Ú³×', '¸Ş½Å');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'È£ºø°°Àº ¸Ş½Ã', 'È£ºø°°Àº³à¼®!!!', '¿ÀÀû³¯µÎ');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ÇÑÆÇ ºÙ¾îº¸ÀÚ´Â°Å³Ä???', 'Ãà±¸µµ ¸øÇÏ´Â°Ô ¸ğµ¨ÀÌ³ª ÇÏ¶ó±×·¡¶ó', '¸Ş½Ã½Å');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '¸ğµ¨µµ ¸øÇØ¿ä ´Ù ´Ä¾î¼­...', '¸ğµ¨Àº °³»Ô...', '¸Ş½Ã½Å2');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '¾Æ´Ï ¤»¤» ±×¸¸ ÇÏ½ÃÁ®', '¿Ö ½Î¿ì°íµé ±×·¯¼¼¿ä', 'ÁßÀçÀÚ');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '¸Ö ±×¸¸ÇØ ³Ê´Â ´©±¸ÆíÀÌ³Ä?', '´©±¸ÀÓ Á¤Ã¼¸¦ ¹àÇô¶ó', '¿ÀÀû³¯µÎ');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '°Å Âü »ç¶÷µé ¼º°İ...¤¹¤¹', '¼º°İ º°·Î³× ¿¡È¿', 'ÁßÀçÀÚ');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '¸Ş½Ãµµ Æû ´Ù Á×¾ú¾î', '¸Ş½Ãµµ Ãà±¸±×¸¸ÇÏ°í °¨ÀÚÄ¨ÀÌ³ª ¸ÔÀ¸¶ó±×·¡', '¸Ş½Ã½Å3');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '»ç¶÷µé ´Ùº¸´Âµ¥ ±×¸¸ Á» ÇÏÀÌ¼Ò', 'ºÎ²ô·¯¿îÁÙ ¾Ë¾Æ¶óµé..', 'ÁßÀçÀÚ2');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '¸Â¾Æ¿ä Ã¢ÇÇÇØ¿ä Á¤¸»', '½Î¿ïÀÏ °¡Áö°í Á» ½Î¿ì¼¼¿ä', 'ÁßÀçÀÚ3');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '¿À´Ãµµ »ç°úÇÏÀÚ', '»ç°úÇÕ´Ï´Ù. Á¦°¡ ¾ğÇàÀÌ Á» ½ÉÇß³×¿ä', '¸Ş½Å');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ÀÌÇØÇÕ´Ï´Ù ¸Ş½Ã ³¯µÎ ¸ğµÎ ÃÖ°íÀÇ ¼±¼öµé', '¸Ş½Ã È£³¯µÎ ´©°¡ ¹¹·¡µµ ÃÖ°íÀÇ ¼±¼öÀÔ´Ï´Ù.', '»ïÀû³¯µÎ');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, '¼ÕÈï¹ÎÂ¯ÀÌ¾ß~~~', '¹ÚÁö¼ºÀÌ ÃÖ°íÁö', 'Áö¼º¹Ú');
-INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'Áö¼ºÀÌÇüÀÌ Â¯ÀÌÁÒ~~', '³»°¡ Â¯ÀÌÁö!!', 'Èï¹Î¼Õ');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'í˜¸ë‚ ë‘ ì´ì ?', 'ì§„ì§œ í˜¸ë‚ ë‘ ì´ì í•©ë‹ˆê¹Œ?', 'ì´ì ë‚ ë‘');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'í˜¸ë‚ ë‘ ì´ì í•œë‹¤ê³ ???', 'ë§ˆë“œë¦¬ë“œì—ì„œ ì–´ë””ë¡œ ê°€ëŠ”ë°?', 'ì‚¼ì ë‚ ë‘');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ìœ ë²¤íˆ¬ìŠ¤ ì„¸ë¦¬ì—ë¡œ ê°„ë‹¤', 'ë‚˜ì— í˜¸ë‚ ë‘ ìœ ë²¤íˆ¬ìŠ¤ë¡œ ë– ë‚œë‹¤', 'ì‚¬ì ë‚ ë‘');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ë©”ì‹œì˜ ì‹œëŒ€ê°€ ì˜¤ëŠ”ê°€', 'í˜¸ë‚ ë‘ ì´ì í•˜ë©´ ë©”ì‹œê°€ ë¼ë¦¬ê°€ ë¨¹ê² ë„¤', 'ë©”ì‹ ');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'í˜¸ë¹—ê°™ì€ ë©”ì‹œ', 'í˜¸ë¹—ê°™ì€ë…€ì„!!!', 'ì˜¤ì ë‚ ë‘');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'í•œíŒ ë¶™ì–´ë³´ìëŠ”ê±°ëƒ???', 'ì¶•êµ¬ë„ ëª»í•˜ëŠ”ê²Œ ëª¨ë¸ì´ë‚˜ í•˜ë¼ê·¸ë˜ë¼', 'ë©”ì‹œì‹ ');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ëª¨ë¸ë„ ëª»í•´ìš” ë‹¤ ëŠ™ì–´ì„œ...', 'ëª¨ë¸ì€ ê°œë¿”...', 'ë©”ì‹œì‹ 2');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ì•„ë‹ˆ ã…‹ã…‹ ê·¸ë§Œ í•˜ì‹œì ¸', 'ì™œ ì‹¸ìš°ê³ ë“¤ ê·¸ëŸ¬ì„¸ìš”', 'ì¤‘ì¬ì');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ë©€ ê·¸ë§Œí•´ ë„ˆëŠ” ëˆ„êµ¬í¸ì´ëƒ?', 'ëˆ„êµ¬ì„ ì •ì²´ë¥¼ ë°í˜€ë¼', 'ì˜¤ì ë‚ ë‘');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ê±° ì°¸ ì‚¬ëŒë“¤ ì„±ê²©...ã…‰ã…‰', 'ì„±ê²© ë³„ë¡œë„¤ ì—íš¨', 'ì¤‘ì¬ì');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ë©”ì‹œë„ í¼ ë‹¤ ì£½ì—ˆì–´', 'ë©”ì‹œë„ ì¶•êµ¬ê·¸ë§Œí•˜ê³  ê°ìì¹©ì´ë‚˜ ë¨¹ìœ¼ë¼ê·¸ë˜', 'ë©”ì‹œì‹ 3');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ì‚¬ëŒë“¤ ë‹¤ë³´ëŠ”ë° ê·¸ë§Œ ì¢€ í•˜ì´ì†Œ', 'ë¶€ë„ëŸ¬ìš´ì¤„ ì•Œì•„ë¼ë“¤..', 'ì¤‘ì¬ì2');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ë§ì•„ìš” ì°½í”¼í•´ìš” ì •ë§', 'ì‹¸ìš¸ì¼ ê°€ì§€ê³  ì¢€ ì‹¸ìš°ì„¸ìš”', 'ì¤‘ì¬ì3');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ì˜¤ëŠ˜ë„ ì‚¬ê³¼í•˜ì', 'ì‚¬ê³¼í•©ë‹ˆë‹¤. ì œê°€ ì–¸í–‰ì´ ì¢€ ì‹¬í–ˆë„¤ìš”', 'ë©”ì‹ ');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ì´í•´í•©ë‹ˆë‹¤ ë©”ì‹œ ë‚ ë‘ ëª¨ë‘ ìµœê³ ì˜ ì„ ìˆ˜ë“¤', 'ë©”ì‹œ í˜¸ë‚ ë‘ ëˆ„ê°€ ë­ë˜ë„ ìµœê³ ì˜ ì„ ìˆ˜ì…ë‹ˆë‹¤.', 'ì‚¼ì ë‚ ë‘');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ì†í¥ë¯¼ì§±ì´ì•¼~~~', 'ë°•ì§€ì„±ì´ ìµœê³ ì§€', 'ì§€ì„±ë°•');
+INSERT INTO fcryanboard(bno, title, content, writer) VALUES(seq_fcryanboard.NEXTVAL, 'ì§€ì„±ì´í˜•ì´ ì§±ì´ì£ ~~', 'ë‚´ê°€ ì§±ì´ì§€!!', 'í¥ë¯¼ì†');
 COMMIT;
 
 SELECT * FROM fcryanboard
@@ -121,7 +121,7 @@ ORDER BY regdate DESC;
 
 COMMIT;
 
--- fcryan ´ñ±Û
+-- fcryan ëŒ“ê¸€
 DROP SEQUENCE seq_fcryanreply_rno;
 CREATE SEQUENCE seq_fcryanreply_rno
 INCREMENT BY 1
@@ -143,15 +143,15 @@ ALTER TABLE fcryanreply ADD CONSTRAINT fcryanreply_fk_bno
 COMMIT;
 
 
-DELETE TABLE fcryanreply;
+DELETE FROM fcryanreply;
 INSERT INTO fcryanreply(rno, content, writer, bno)
-VALUES(seq_fcryanreply_rno.NEXTVAL, 'Å×½ºÆ®ÀÔ´Ï´Ù. 1', 'sentilemon02', 343);
+VALUES(seq_fcryanreply_rno.NEXTVAL, 'í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤. 1', 'ccw1104', 17);
 INSERT INTO fcryanreply(rno, content, writer, bno)
-VALUES(seq_fcryanreply_rno.NEXTVAL, 'Å×½ºÆ®ÀÔ´Ï´Ù. 2', 'Tester1', 343);
+VALUES(seq_fcryanreply_rno.NEXTVAL, 'í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤. 2', 'Tester1', 17);
 INSERT INTO fcryanreply(rno, content, writer, bno)
-VALUES(seq_fcryanreply_rno.NEXTVAL, 'Å×½ºÆ®ÀÔ´Ï´Ù. 3', 'sentilemon02', 343);
+VALUES(seq_fcryanreply_rno.NEXTVAL, 'í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤. 3', 'ccw1104', 17);
 INSERT INTO fcryanreply(rno, content, writer, bno)
-VALUES(seq_fcryanreply_rno.NEXTVAL, 'Å×½ºÆ®ÀÔ´Ï´Ù. 4', 'sentilemon02', 343);
+VALUES(seq_fcryanreply_rno.NEXTVAL, 'í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤. 4', 'ccw1104', 17);
 INSERT INTO fcryanreply(rno, content, writer, bno)
-VALUES(seq_fcryanreply_rno.NEXTVAL, 'Å×½ºÆ®ÀÔ´Ï´Ù. 5', 'Tester3', 343);
+VALUES(seq_fcryanreply_rno.NEXTVAL, 'í…ŒìŠ¤íŠ¸ì…ë‹ˆë‹¤. 5', 'Tester3', 17);
 COMMIT;
