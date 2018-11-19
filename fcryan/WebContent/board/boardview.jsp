@@ -391,6 +391,14 @@
 	  from { background-position: 0 }
 	  to { background-position: -8250px }
 	}
+	
+	#wrap_like {
+		text-align: center;
+	}
+	i.fa-heart{
+		font-size: 14px;
+		padding-right: 5px;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -424,6 +432,9 @@
 	$(document).on("click", "#reply_btn", function(){
 		oEditors.getById["replyInsert"].exec("UPDATE_CONTENTS_FIELD", []);
 		var content = $("#replyInsert").val();
+		
+		alert("내용: " + content);
+		
 		
 		if(content == "") {
 			$("#replyInsert").focus();			
@@ -539,11 +550,7 @@
 							</c:if>
 						</td>
 						<td style="border-left: 0px; border-right: 0px; text-align: center;">
-							<i class="fa fa-eye"></i> ${boardview.viewcnt} 
-							<button type="button" class="btn_like" id="btn_good">
-								<span class="img_emoti">좋아요</span>
-								<span class="ani_heart_m"></span>
-							</button> ${boardview.goodcnt}
+							<i class="fa fa-eye"></i> ${boardview.viewcnt}  <i class="fa fa-heart"></i>${boardview.goodcnt}
 						</td>
 					</tr>
 					<tr>
@@ -564,6 +571,13 @@
 					<button type="submit" class="reply_btn btn-warning btn-primary" id="boardUpdate">수정</button>
 					<button type="button" class="reply_btn btn-danger btn-primary" id="boardDelete">삭제</button>
 				</c:if>
+			</div>
+			
+			<div id="wrap_like">
+				<button type="button" class="btn_like" id="btn_good">
+					<span class="img_emoti">좋아요</span>
+					<span class="ani_heart_m"></span>
+				</button> 
 			</div>
 		</div>
 	</div>

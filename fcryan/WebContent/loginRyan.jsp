@@ -35,7 +35,7 @@
             </g>
             <path d="M40,105 C10,140 110,140 80,105 L80,105 L70,111 L60,105 L50,111 L40,105" fill="#fff" />
         </svg>
-        <input class="input_login" id="input_id" type="text" placeholder="email@domain.com">
+        <input class="input_login" id="input_id" type="text" placeholder="ID">
         <input class="input_login" id="input_pw" type="password" placeholder="Password">
     </form>
     <script src="js/script.js"></script>

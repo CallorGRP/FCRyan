@@ -54,7 +54,7 @@ function copyStyles(el) {
 }
 
 function look(event) {
-	console.log("test2");
+	console.log("ID");
     const el = event.target;
     const text = el.value.substr(0, el.selectionStart);
 
@@ -74,6 +74,7 @@ function look(event) {
 }
 
 function lookAway(event) {
+	console.log("PW");
     const el = event.target;
     const ryanRect = ryan.getBoundingClientRect();
     const inputRect = el.getBoundingClientRect();

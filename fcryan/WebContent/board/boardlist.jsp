@@ -130,7 +130,7 @@ h3 {
     animation-iteration-count: infinite;
 }
 .replyCnt_Color {
-	background-color: #2C3E50;
+	background-color: rgb(231, 29, 54);
 	font-size: 11px;
 	color: white;
 	border-radius: 25px;
