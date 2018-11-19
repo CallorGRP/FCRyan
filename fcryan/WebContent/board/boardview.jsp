@@ -77,7 +77,6 @@
 		border-radius: 4px;
 		padding: 10px;
 		background-color: white;
-		margin-bottom: 15px;
 		width: 602px;
 		box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
 	}
@@ -86,10 +85,6 @@
 	}
 	#replyInsert {
 		width: 730px!important;
-	}
-	
-	.reply_line2 {
-		margin-top: 10px;
 	}
 	.reply_writer {
 		color: #2C3E50;
@@ -307,9 +302,9 @@
 	 .error {
 		color: #FF3636;
 		font-size: 12px;
-		display: block;
+		display: inline-block;
 		display: none;
-		margin-top: 8px;
+		margin-top: 10px;
 	}
 	.btn_like {
 	  position: relative;
@@ -326,6 +321,7 @@
 	  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.03);
 	  transition: border .2s ease-out,box-shadow .1s ease-out,background-color .4s ease-out;
 	  cursor: pointer;
+	  outline: none;
 	}
 	
 	.btn_like:hover {
@@ -433,10 +429,7 @@
 		oEditors.getById["replyInsert"].exec("UPDATE_CONTENTS_FIELD", []);
 		var content = $("#replyInsert").val();
 		
-		alert("내용: " + content);
-		
-		
-		if(content == "") {
+		if(content == "<p><br></p>") {
 			$("#replyInsert").focus();			
 			$(".error").css("display", "block");
 			return false;	
@@ -505,7 +498,7 @@
 		$("#modal_all").css("display", "none");
 	});
 	$(document).on("click", "#yes_btn", function(){
-		location.href="boardDelete.bizpoll?bno=${boardview.bno}";
+		location.href="boardDelete.bizpoll?bno=${boardview.bno}&filename=${boardview.filename}";
 	});
 	
 	

@@ -28,16 +28,15 @@ public class BoardDeletePlayAction implements Action{
 		
 		
 		// 첨부파일 삭제		
-		BoardDAO bDao = BoardDAO.getInstance();
-		BoardDTO bDto = bDao.boardDetailView(bno);
-		
-		String filename = bDto.getFilename();
+		String filename = request.getParameter("filename");
 		if(!filename.equals("-")) {
 			File file = new File(Constants.UPLOAD_PATH + filename);
 			file.delete();
 		}
 		
+		
 		// 게시글 삭제
+		BoardDAO bDao = BoardDAO.getInstance();
 		bDao.boardDelete(bno);
 		
 		

@@ -418,7 +418,7 @@
 	<div id="join_wrap" class="divsize">
 		<form action="memberplay.bizpoll" method="POST" name="frm_mem" id="frm_mem">
 			<div class="div_input" id="fcryan_id">
-				<input type="text" placeholder="아이디" class="input_join input_msg" id="inputid" name="inputid">
+				<input type="text" placeholder="아이디" class="input_join input_msg" id="inputid" name="inputid" maxlength="20">
 				<span id="input_error" class="error">필수 정보입니다.</span>
 			</div>
 			<div class="div_input" id="fcryan_pw">
