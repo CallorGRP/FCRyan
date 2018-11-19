@@ -245,7 +245,6 @@ h3 {
 							<th style="width: 60px">조회수</th>
 							<th style="width: 60px">첨부</th>
 						</tr>
-
 						<c:forEach items="${boardList}" var="bDto">
 							<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" var="today2"/>
 							<fmt:formatDate value="${bDto.regdate}" pattern="yyyy-MM-dd" var="regdate2"/>
@@ -310,6 +309,7 @@ h3 {
 					</div>
 				</c:if>
 					
+
 
 
 					<div class="board_pagination">

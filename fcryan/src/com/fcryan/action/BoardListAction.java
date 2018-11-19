@@ -22,12 +22,13 @@ public class BoardListAction implements Action{
 		String url = "board/boardlist.jsp";
 		
 		CriteriaDTO criDto = new CriteriaDTO();
-		int page = 1;
+		int page = 1; // 항상 첫페이지는 무조건 1페이지
 		if(request.getParameter("page") != null) {
+			// page = 2
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 //		System.out.println("페이지번호: " + page);
-		criDto.setPage(page);
+		criDto.setPage(page); // page = 2
 		
 		String code = "new";
 		if(request.getParameter("key") != null) {
@@ -60,7 +61,7 @@ public class BoardListAction implements Action{
 		request.setAttribute("today", today);	
 		
 		
-		
+		// 페이지네이션 생성
 		PageMakerDTO pageMaker = new PageMakerDTO();
 		pageMaker.setCriDto(criDto);
 		int totalCount = bDao.totalCount(criDto);

@@ -4,9 +4,9 @@ package com.fcryan.dto;
 public class CriteriaDTO {
 	private int page; // 2       // 페이지 번호(하단의 번호들 클릭)
 	private int perPageNum; // 10  // 한 페이지에 보여줄 게시글 수
-	private String keyword; // 검색 키워드
-	private String flag;    // 검색 타입
-	private String code;    // 정렬 타입
+	private String keyword; // null // 검색 키워드
+	private String flag;    // null // 검색 타입
+	private String code;    // new // 정렬 타입
 	
 	public CriteriaDTO() {
 		this.page = 1;
@@ -42,12 +42,12 @@ public class CriteriaDTO {
 	}
 
 	// method for MyBatis SQL Mapper: 조회 시작 row 취득하는 메서드
-	public int getPageStart() {
+	public int getPageStart() { // 11
 		return (((this.page - 1) * perPageNum) + 1);
 	}
 	
 	// method for MyBatis SQL Mapper: 조회 마지막 row 취득하는 메서드
-	public int getPerPageNum() {
+	public int getPerPageNum() { // 20
 		return this.page * perPageNum;
 		// 2페이지 x 10 = 20번 게시글까지 출력
 	}
