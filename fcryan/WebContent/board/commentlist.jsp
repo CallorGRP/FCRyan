@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/include.jsp" %>
-<%
-	String path = request.getContextPath(); //컨텍스트 경로
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="<%=path%>/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
 <body>
 	<div id="reply_wrap_title">
@@ -67,7 +64,7 @@
 									nhn.husky.EZCreator.createInIFrame({
 									    oAppRef: oEditors,
 									    elPlaceHolder: "replyInsert",
-									    sSkinURI: "<%=path%>/smarteditor/SmartEditor2Skin.html",
+									    sSkinURI: "<%=request.getContextPath()%>/smarteditor/SmartEditor2Skin.html",
 									    fCreator: "createSEditor2",
 									    htParams: { fOnBeforeUnload : function(){} } /* 에디터 내용 변경 경고창 끄기 */
 									});
