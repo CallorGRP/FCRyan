@@ -120,11 +120,11 @@ public class BoardDAO {
 	}
 	
 	public int boardInsert(BoardDTO bDto) {
-		sqlSession = sqlSessionFactory.openSession();
+		// boolean값을 true로 주면 AutoCommit 설정!
+		sqlSession = sqlSessionFactory.openSession(true);
 		int result = 0;
 		try {
 			result = sqlSession.insert("boardInsert", bDto);
-			sqlSession.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

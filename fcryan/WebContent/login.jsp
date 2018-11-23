@@ -192,6 +192,8 @@
 </style>
 <script type="text/javascript">
      $(document).ready(function() {
+    	 $("#inputid").val("");
+    	 
          $("#inputid").focus(function() {
               $("#naver_id").css("border", "1px solid #263959");         
          });
